@@ -1,7 +1,9 @@
 name: Knip
 
 on:
-  pull_request_target:
+  push:
+    branches:
+      - development
   workflow_dispatch:
 
 permissions: write-all

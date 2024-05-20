@@ -1,11 +1,14 @@
-# `@ubiquity/ts-template`
+# `@ubiquibot/command-query-user`
 
-This template repository includes support for the following:
+This package helps users querying their information, from they wallet address, label access control or current XP.
 
-- TypeScript
-- Environment Variables
-- Conventional Commits
-- Automatic deployment to Cloudflare Pages
+## Usage
+
+The following commands are allowed:
+
+```shell
+/query @user
+```
 
 ## Testing
 
