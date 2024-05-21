@@ -10,8 +10,6 @@
   },
   "scripts": {
     "dev": "wrangler dev --env dev --port 4000",
-    "start": "tsx build/esbuild-server.ts",
-    "build": "tsx build/esbuild-build.ts",
     "format": "run-s format:lint format:prettier format:cspell",
     "format:lint": "eslint --fix .",
     "format:prettier": "prettier --write .",
@@ -19,9 +17,7 @@
     "knip": "knip --config .github/knip.ts",
     "knip-ci": "knip --no-exit-code --reporter json --config .github/knip.ts",
     "prepare": "husky install",
-    "test": "jest --setupFiles dotenv/config --coverage",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "test": "jest --setupFiles dotenv/config --coverage"
   },
   "keywords": [
     "typescript",
@@ -31,10 +27,12 @@
     "open-source"
   ],
   "dependencies": {
+    "@commander-js/extra-typings": "12.1.0",
     "@octokit/rest": "20.1.1",
     "@octokit/webhooks": "13.2.7",
     "@sinclair/typebox": "0.32.30",
     "@supabase/supabase-js": "2.43.2",
+    "commander": "12.1.0",
     "dotenv": "16.4.5"
   },
   "devDependencies": {
@@ -50,7 +48,6 @@
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
     "cspell": "^8.4.0",
-    "cypress": "13.6.6",
     "esbuild": "^0.20.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
