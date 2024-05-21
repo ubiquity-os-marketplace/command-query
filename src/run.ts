@@ -11,15 +11,22 @@ export async function run(inputs: PluginInputs, env: Env) {
     return;
   }
   const args = inputs.eventPayload.comment.body.trim().split(/\s+/);
+  const octokit = new Octokit({ auth: env.GITHUB_TOKEN });
+  const context = { octokit, payload: inputs.eventPayload } as Context;
   try {
-    const octokit = new Octokit({ auth: env.GITHUB_TOKEN });
-    const commandParser = new CommandParser({ octokit, payload: inputs.eventPayload } as Context);
+    const commandParser = new CommandParser(context);
     await commandParser.parse(args);
   } catch (e) {
     if (e instanceof CommanderError) {
       if (e.code !== "commander.unknownCommand") {
         // post error
         console.error(e);
+        await octokit.issues.createComment({
+          body: `${e}`,
+          owner: context.payload.repository.owner.login,
+          repo: context.payload.repository.name,
+          issue_number: context.payload.issue.number,
+        });
       }
     } else {
       throw e;
