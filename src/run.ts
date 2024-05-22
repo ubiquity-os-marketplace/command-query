@@ -48,7 +48,6 @@ export async function run(inputs: PluginInputs, env: Env) {
     if (e instanceof CommanderError) {
       if (e.code !== "commander.unknownCommand") {
         console.error(e);
-        console.log("posting!");
         await octokit.issues.createComment({
           body: `\`\`\`
 Failed to run command-query-user.
