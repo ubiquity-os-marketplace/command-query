@@ -14,8 +14,9 @@ jobs:
     steps:
       - uses: cloudflare/wrangler-action@v3
         with:
+          wranglerVersion: '3.57.0'
           repository: ${{ github.repository }}
-          production_branch: ${{ github.event.repository.default_branch }}
+          production_branch: 'main'
           current_branch: ${{ github.event.workflow_run.head_branch }}
           cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
