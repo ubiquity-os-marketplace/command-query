@@ -15,13 +15,7 @@ jobs:
       - uses: cloudflare/wrangler-action@v3
         with:
           wranglerVersion: '3.57.0'
-          repository: ${{ github.repository }}
-          production_branch: 'main'
-          current_branch: ${{ github.event.workflow_run.head_branch }}
-          cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          commit_sha: ${{ github.event.workflow_run.head_sha }}
-          workflow_run_id: ${{ github.event.workflow_run.id }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           secrets: |
             SUPABASE_URL
             SUPABASE_KEY
