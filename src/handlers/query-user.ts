@@ -57,6 +57,6 @@ User information for ${username} was not found.
       issue_number: payload.issue.number,
     });
   } catch (e) {
-    console.error("Could not query user.", e);
+    context.logger.error("Could not query user.", e);
   }
 }

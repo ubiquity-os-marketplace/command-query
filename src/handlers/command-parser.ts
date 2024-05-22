@@ -20,10 +20,10 @@ export class CommandParser {
     // Overrides to make sure we do not use TTY outputs as they are not available outside Node.js env
     program.configureOutput({
       writeOut(str: string) {
-        console.log(str);
+        context.logger.info(str);
       },
       writeErr(str: string) {
-        console.error(str);
+        context.logger.error(str);
       },
       getErrHelpWidth(): number {
         return 0;
