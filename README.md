@@ -21,21 +21,6 @@ A valid configuration can be like:
 ```
 
 ## Testing
-
-### Cypress
-
-To test with Cypress Studio UI, run
-
-```shell
-yarn cy:open
-```
-
-Otherwise to simply run the tests through the console, run
-
-```shell
-yarn cy:run
-```
-
 ### Jest
 
 To start Jest tests, run
