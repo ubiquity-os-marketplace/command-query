@@ -22,21 +22,16 @@ User information for ${username} was not found.
     } else {
       body.push(`
 | Property | Value |
------------|--------
-`);
+|----------|-------|`);
       if (wallet) {
-        body.push(`
-| Wallet | ${wallet.address} |
-`);
+        body.push(`| Wallet | ${wallet.address} |`);
       }
       if (access) {
-        body.push(`
-| Access | ${access.multiplier_reason} |
-`);
+        body.push(`| Access | ${access.multiplier_reason} |`);
       }
     }
     await octokit.issues.createComment({
-      body: body.join(""),
+      body: body.join("\n"),
       owner: payload.repository.owner.login,
       repo: payload.repository.name,
       issue_number: payload.issue.number,
