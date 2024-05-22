@@ -12,6 +12,10 @@ jobs:
     name: Automatic Cloudflare Deploy
     runs-on: ubuntu-22.04
     steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
       - uses: actions/checkout@v4
       - uses: cloudflare/wrangler-action@v3
         with:
