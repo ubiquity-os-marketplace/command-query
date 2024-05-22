@@ -19,6 +19,9 @@ export async function queryUser(context: Context, username: string) {
         username,
         org: payload.organization.login,
       });
+      // @ts-expect-error Somehow typing seems wrong but according to
+      // https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user--status-codes
+      // 204 means the user is part of the Organization
       if (status !== 204) {
         body.push(`\`\`\`User ${username} cannot request another user as it is not member of the organization.\`\`\``);
         await octokit.issues.createComment({
