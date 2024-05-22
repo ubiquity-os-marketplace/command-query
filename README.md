@@ -10,6 +10,16 @@ The following commands are allowed:
 /query @user
 ```
 
+## Configuration
+A valid configuration can be like:
+
+```yaml
+- plugin: https://ubiquibot-command-query-user.ubq.fi
+  type: github
+  with:
+    allowPublicQuery: true
+```
+
 ## Testing
 
 ### Cypress
