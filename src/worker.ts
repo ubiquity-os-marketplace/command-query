@@ -10,7 +10,7 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     try {
       if (request.method !== "POST") {
-        return new Response(JSON.stringify({ error: `Error: only POST requests are supported.` }), {
+        return new Response(JSON.stringify({ error: `Only POST requests are supported.` }), {
           status: 405,
           headers: { "content-type": "application/json", Allow: "POST" },
         });
