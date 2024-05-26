@@ -36,16 +36,17 @@ export async function run(inputs: PluginInputs, env: Env) {
         console.error(message, ...optionalParams);
       },
       fatal(message: unknown, ...optionalParams: unknown[]) {
-        console.log("got an error", message);
-        octokit.issues
-          .createComment({
+        console.log("here");
+        (async () =>
+          await octokit.issues.createComment({
             body: `\`\`\`text\ncommand-query-user failed to run.\n\n${message}\n\`\`\``,
             owner: inputs.eventPayload.repository.owner.login,
             repo: inputs.eventPayload.repository.name,
             issue_number: inputs.eventPayload.issue.number,
-          })
+          }))()
           .catch(() => console.error(message, ...optionalParams))
           .finally(() => console.error(message, ...optionalParams));
+        console.log("here 2");
       },
     },
     adapters: {},
