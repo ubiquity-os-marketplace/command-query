@@ -9,6 +9,12 @@ config();
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     try {
+      if (request.method !== "POST") {
+        return new Response(JSON.stringify({ error: `Only POST requests are supported.` }), {
+          status: 405,
+          headers: { "content-type": "application/json", Allow: "POST" },
+        });
+      }
       const contentType = request.headers.get("content-type");
       if (contentType !== "application/json") {
         return new Response(JSON.stringify({ error: `Error: ${contentType} is not a valid content type` }), {
