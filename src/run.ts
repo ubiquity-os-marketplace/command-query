@@ -15,6 +15,7 @@ export async function run(inputs: PluginInputs, env: Env) {
   }
   const args = inputs.eventPayload.comment.body.trim().split(/\s+/);
   const octokit = new Octokit({ auth: inputs.authToken });
+  console.log("inputs", inputs);
   const supabase = createClient<Database>(env.SUPABASE_URL, env.SUPABASE_KEY);
   const context = {
     eventName: inputs.eventName,
@@ -35,6 +36,7 @@ export async function run(inputs: PluginInputs, env: Env) {
         console.error(message, ...optionalParams);
       },
       fatal(message: unknown, ...optionalParams: unknown[]) {
+        console.log("got an error", message);
         octokit.issues
           .createComment({
             body: `\`\`\`text\ncommand-query-user failed to run.\n\n${message}\n\`\`\``,
