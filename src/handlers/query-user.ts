@@ -47,7 +47,7 @@ User information for ${username} was not found.
         body.push(`| Wallet | ${wallet.address} |`);
       }
       if (access) {
-        body.push(`| Access | ${access.multiplier_reason} |`);
+        body.push(`| Access | \`\`\`${JSON.stringify({ ...access.multiplier_reason, ...access.labels }, null, 2)}\`\`\` |`);
       }
     }
     await octokit.issues.createComment({
