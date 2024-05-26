@@ -1,7 +1,8 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { Context } from "../types/context";
+import { Database } from "../types/database";
 
-export function createAdapters(supabaseClient: SupabaseClient, context: Context) {
+export function createAdapters(supabaseClient: SupabaseClient<Database>, context: Context) {
   return {
     supabase: {
       access: {

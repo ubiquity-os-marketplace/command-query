@@ -35,43 +35,38 @@ export async function run(inputs: PluginInputs, env: Env) {
       error(message: unknown, ...optionalParams: unknown[]) {
         console.error(message, ...optionalParams);
       },
-      fatal(message: unknown, ...optionalParams: unknown[]) {
-        console.log("here");
-        (async () =>
+      async fatal(message: unknown, ...optionalParams: unknown[]) {
+        console.error(message, ...optionalParams);
+        try {
           await octokit.issues.createComment({
-            body: `\`\`\`text\ncommand-query-user failed to run.\n\n${message}\n\`\`\``,
-            owner: inputs.eventPayload.repository.owner.login,
-            repo: inputs.eventPayload.repository.name,
-            issue_number: inputs.eventPayload.issue.number,
-          }))()
-          .catch(() => console.error(message, ...optionalParams))
-          .finally(() => console.error(message, ...optionalParams));
-        console.log("here 2");
+            body: `\`\`\`
+Failed to run command-query-user.
+${message}
+
+${commandParser.helpInformation()}
+\`\`\``,
+            owner: context.payload.repository.owner.login,
+            repo: context.payload.repository.name,
+            issue_number: context.payload.issue.number,
+          });
+        } finally {
+          console.error(message, ...optionalParams);
+        }
       },
     },
-    adapters: {},
+    adapters: {} as unknown as ReturnType<typeof createAdapters>,
   } as Context;
   context.adapters = createAdapters(supabase, context);
   const commandParser = new CommandParser(context);
   try {
     await commandParser.parse(args);
   } catch (e) {
-    context.logger.error("error", e);
     if (e instanceof CommanderError) {
       if (e.code !== "commander.unknownCommand") {
-        await octokit.issues.createComment({
-          body: `\`\`\`
-Failed to run command-query-user.
-${e}
-
-${commandParser.helpInformation()}
-\`\`\``,
-          owner: context.payload.repository.owner.login,
-          repo: context.payload.repository.name,
-          issue_number: context.payload.issue.number,
-        });
+        context.logger.fatal(e);
       }
     } else {
+      context.logger.error("error", e);
       throw e;
     }
   }
