@@ -60,6 +60,6 @@ User information for ${username} was not found.
       issue_number: payload.issue.number,
     });
   } catch (e) {
-    context.logger.fatal("Could not query user.", e);
+    context.logger.fatal(`Could not query user ${username}.`, e);
   }
 }
