@@ -14,9 +14,12 @@ export async function queryUser(context: Context, username: string) {
     } = await octokit.users.getByUsername({
       username,
     });
-    if (!config.allowPublicQuery && payload.organization) {
+    if (!config.allowPublicQuery) {
+      if (!payload.organization || !payload.comment.user?.name) {
+        throw new Error("Missing Organization / User from payload, cannot check for organization membership.");
+      }
       const { status } = await octokit.orgs.checkMembershipForUser({
-        username,
+        username: payload.comment.user.name,
         org: payload.organization.login,
       });
       // @ts-expect-error Somehow typing seems wrong but according to
