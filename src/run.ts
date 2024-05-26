@@ -37,7 +37,7 @@ export async function run(inputs: PluginInputs, env: Env) {
       fatal(message: unknown, ...optionalParams: unknown[]) {
         octokit.issues
           .createComment({
-            body: `command-query-user failed to run.\n\n${message}`,
+            body: `\`\`\`command-query-user failed to run.\n\n${message}\`\`\``,
             owner: inputs.eventPayload.repository.owner.login,
             repo: inputs.eventPayload.repository.name,
             issue_number: inputs.eventPayload.issue.number,
