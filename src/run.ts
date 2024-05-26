@@ -63,7 +63,7 @@ ${commandParser.helpInformation()}
   } catch (e) {
     if (e instanceof CommanderError) {
       if (e.code !== "commander.unknownCommand") {
-        context.logger.fatal(e);
+        await context.logger.fatal(e);
       }
     } else {
       context.logger.error("error", e);

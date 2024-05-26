@@ -12,7 +12,7 @@ export interface Context<T extends WebhookEventName = SupportedEvents> {
   adapters: ReturnType<typeof createAdapters>;
   config: CommandQuerySettings;
   logger: {
-    fatal: (message: unknown, ...optionalParams: unknown[]) => void;
+    fatal: (message: unknown, ...optionalParams: unknown[]) => Promise<void>;
     error: (message: unknown, ...optionalParams: unknown[]) => void;
     warn: (message: unknown, ...optionalParams: unknown[]) => void;
     info: (message: unknown, ...optionalParams: unknown[]) => void;

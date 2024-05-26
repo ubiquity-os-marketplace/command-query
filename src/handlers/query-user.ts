@@ -50,7 +50,7 @@ User information for ${username} was not found.
         body.push(`| Wallet | ${wallet.address} |`);
       }
       if (access) {
-        body.push(`| Access | \`\`\`${JSON.stringify({ ...access.multiplier_reason, ...access.labels }, null, 2)}\`\`\` |`);
+        body.push(`| Access | \`\`\`${JSON.stringify({ multiplier_reason: access.multiplier_reason, labels: access.labels }, null, 2)}\`\`\` |`);
       }
     }
     await octokit.issues.createComment({
@@ -60,6 +60,6 @@ User information for ${username} was not found.
       issue_number: payload.issue.number,
     });
   } catch (e) {
-    context.logger.fatal(`Could not query user ${username}.`, e);
+    await context.logger.fatal(`Could not query user ${username}.`, e);
   }
 }
