@@ -11,6 +11,16 @@ The following commands are allowed:
 ```
 
 ## Running locally
+### Supabase types
+You can run the type generations against a local database with
+```shell
+yarn supabase:generate:local
+```
+Or against an instance by setting the `SUPABASE_ACCESS_TOKEN` and `SUPABASE_PROJECT_ID` in your `.env` file
+```shell
+yarn prebuild
+```
+
 ### Worker
 Start the Worker by running
 ```shell

@@ -4,6 +4,7 @@ import { Octokit } from "@octokit/rest";
 import { createAdapters } from "./adapters";
 import { CommandParser } from "./handlers/command-parser";
 import { Context } from "./types/context";
+import { Database } from "./types/database";
 import { Env } from "./types/env";
 import { PluginInputs } from "./types/plugin-input";
 
@@ -14,7 +15,7 @@ export async function run(inputs: PluginInputs, env: Env) {
   }
   const args = inputs.eventPayload.comment.body.trim().split(/\s+/);
   const octokit = new Octokit({ auth: env.UBIQUIBOT_TOKEN });
-  const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_KEY);
+  const supabase = createClient<Database>(env.SUPABASE_URL, env.SUPABASE_KEY);
   const context = {
     eventName: inputs.eventName,
     payload: inputs.eventPayload,
