@@ -2,13 +2,14 @@
   "name": "command-query-user",
   "version": "1.0.0",
   "description": "Queries a user and retrieves its related information, such as the wallet, the label access control, or the current XP.",
-  "main": "build/index.ts",
+  "main": "src/worker.ts",
   "author": "Ubiquity DAO",
   "license": "MIT",
   "engines": {
     "node": ">=20.10.0"
   },
   "scripts": {
+    "prebuild": "dotenv -- cross-env yarn supabase:generate:remote",
     "dev": "wrangler dev --env dev --port 4000",
     "format": "run-s format:lint format:prettier format:cspell",
     "format:lint": "eslint --fix .",
@@ -17,7 +18,8 @@
     "knip": "knip --config .github/knip.ts",
     "knip-ci": "knip --no-exit-code --reporter json --config .github/knip.ts",
     "prepare": "husky install",
-    "test": "jest --setupFiles dotenv/config --coverage"
+    "supabase:generate:local": "supabase gen types typescript --local > src/types/database.ts",
+    "supabase:generate:remote": "cross-env-shell \"supabase gen types typescript --project-id $SUPABASE_PROJECT_ID --schema public > src/types/database.ts\""
   },
   "keywords": [
     "typescript",
@@ -27,7 +29,6 @@
     "open-source"
   ],
   "dependencies": {
-    "@commander-js/extra-typings": "12.1.0",
     "@octokit/rest": "20.1.1",
     "@octokit/webhooks": "13.2.7",
     "@sinclair/typebox": "0.32.30",
@@ -47,8 +48,9 @@
     "@types/node": "^20.11.19",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
+    "cross-env": "7.0.3",
     "cspell": "^8.4.0",
-    "esbuild": "^0.20.1",
+    "dotenv-cli": "7.4.2",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-filename-rules": "^1.3.1",
@@ -61,8 +63,8 @@
     "lint-staged": "^15.2.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.2.5",
+    "supabase": "1.167.4",
     "ts-jest": "29.1.2",
-    "tsx": "^4.7.1",
     "typescript": "^5.3.3",
     "wrangler": "3.57.0"
   },

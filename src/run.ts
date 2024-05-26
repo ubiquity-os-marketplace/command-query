@@ -4,6 +4,7 @@ import { Octokit } from "@octokit/rest";
 import { createAdapters } from "./adapters";
 import { CommandParser } from "./handlers/command-parser";
 import { Context } from "./types/context";
+import { Database } from "./types/database";
 import { Env } from "./types/env";
 import { PluginInputs } from "./types/plugin-input";
 
@@ -13,8 +14,8 @@ export async function run(inputs: PluginInputs, env: Env) {
     return;
   }
   const args = inputs.eventPayload.comment.body.trim().split(/\s+/);
-  const octokit = new Octokit({ auth: env.UBIQUIBOT_TOKEN });
-  const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_KEY);
+  const octokit = new Octokit({ auth: inputs.authToken });
+  const supabase = createClient<Database>(env.SUPABASE_URL, env.SUPABASE_KEY);
   const context = {
     eventName: inputs.eventName,
     payload: inputs.eventPayload,
@@ -34,7 +35,15 @@ export async function run(inputs: PluginInputs, env: Env) {
         console.error(message, ...optionalParams);
       },
       fatal(message: unknown, ...optionalParams: unknown[]) {
-        console.error(message, ...optionalParams);
+        octokit.issues
+          .createComment({
+            body: `command-query-user failed to run.\n\n${message}`,
+            owner: inputs.eventPayload.repository.owner.login,
+            repo: inputs.eventPayload.repository.name,
+            issue_number: inputs.eventPayload.issue.number,
+          })
+          .catch(() => console.error(message, ...optionalParams))
+          .finally(() => console.error(message, ...optionalParams));
       },
     },
     adapters: {},
@@ -44,10 +53,9 @@ export async function run(inputs: PluginInputs, env: Env) {
   try {
     await commandParser.parse(args);
   } catch (e) {
-    console.log("error", e);
+    context.logger.error("error", e);
     if (e instanceof CommanderError) {
       if (e.code !== "commander.unknownCommand") {
-        console.error(e);
         await octokit.issues.createComment({
           body: `\`\`\`
 Failed to run command-query-user.

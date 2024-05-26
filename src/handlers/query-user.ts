@@ -14,9 +14,12 @@ export async function queryUser(context: Context, username: string) {
     } = await octokit.users.getByUsername({
       username,
     });
-    if (!config.allowPublicQuery && payload.organization) {
+    if (!config.allowPublicQuery) {
+      if (!payload.organization || !payload.comment.user?.name) {
+        throw new Error("Missing Organization / User from payload, cannot check for organization membership.");
+      }
       const { status } = await octokit.orgs.checkMembershipForUser({
-        username,
+        username: payload.comment.user.name,
         org: payload.organization.login,
       });
       // @ts-expect-error Somehow typing seems wrong but according to
@@ -47,7 +50,7 @@ User information for ${username} was not found.
         body.push(`| Wallet | ${wallet.address} |`);
       }
       if (access) {
-        body.push(`| Access | ${access.multiplier_reason} |`);
+        body.push(`| Access | \`\`\`${JSON.stringify({ ...access.multiplier_reason, ...access.labels }, null, 2)}\`\`\` |`);
       }
     }
     await octokit.issues.createComment({
@@ -57,6 +60,6 @@ User information for ${username} was not found.
       issue_number: payload.issue.number,
     });
   } catch (e) {
-    console.error("Could not query user.", e);
+    context.logger.fatal("Could not query user.", e);
   }
 }

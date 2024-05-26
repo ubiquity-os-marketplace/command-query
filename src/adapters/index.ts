@@ -8,7 +8,7 @@ export function createAdapters(supabaseClient: SupabaseClient, context: Context)
         async getAccess(userId: number) {
           const { data, error } = await supabaseClient.from("access").select("*, users(*)").eq("users.id", userId).single();
           if (error) {
-            context.logger.error(error.message, error);
+            context.logger.error("Failed to get access for user", error);
             return null;
           }
           return data;
