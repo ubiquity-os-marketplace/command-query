@@ -14,7 +14,7 @@ export async function run(inputs: PluginInputs, env: Env) {
     return;
   }
   const args = inputs.eventPayload.comment.body.trim().split(/\s+/);
-  const octokit = new Octokit({ auth: env.UBIQUIBOT_TOKEN });
+  const octokit = new Octokit({ auth: inputs.authToken });
   const supabase = createClient<Database>(env.SUPABASE_URL, env.SUPABASE_KEY);
   const context = {
     eventName: inputs.eventName,
