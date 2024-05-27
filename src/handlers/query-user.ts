@@ -1,5 +1,29 @@
 import { Context } from "../types/context";
 
+async function checkUserAccess(context: Context, username: string) {
+  const { octokit, payload } = context;
+  if (!payload.organization || !payload.comment.user?.name) {
+    throw new Error("Missing Organization / User from payload, cannot check for organization membership.");
+  }
+  const { status } = await octokit.orgs.checkMembershipForUser({
+    username: payload.comment.user.name,
+    org: payload.organization.login,
+  });
+  // @ts-expect-error Somehow typing seems wrong but according to
+  // https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user--status-codes
+  // 204 means the user is part of the Organization
+  if (status !== 204) {
+    await octokit.issues.createComment({
+      body: `\`\`\`User ${username} cannot request another user as it is not member of the organization.\`\`\``,
+      owner: payload.repository.owner.login,
+      repo: payload.repository.name,
+      issue_number: payload.issue.number,
+    });
+    return false;
+  }
+  return true;
+}
+
 export async function queryUser(context: Context, username: string) {
   const {
     octokit,
@@ -14,27 +38,8 @@ export async function queryUser(context: Context, username: string) {
     } = await octokit.users.getByUsername({
       username,
     });
-    if (!config.allowPublicQuery) {
-      if (!payload.organization || !payload.comment.user?.name) {
-        throw new Error("Missing Organization / User from payload, cannot check for organization membership.");
-      }
-      const { status } = await octokit.orgs.checkMembershipForUser({
-        username: payload.comment.user.name,
-        org: payload.organization.login,
-      });
-      // @ts-expect-error Somehow typing seems wrong but according to
-      // https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user--status-codes
-      // 204 means the user is part of the Organization
-      if (status !== 204) {
-        body.push(`\`\`\`User ${username} cannot request another user as it is not member of the organization.\`\`\``);
-        await octokit.issues.createComment({
-          body: body.join("\n"),
-          owner: payload.repository.owner.login,
-          repo: payload.repository.name,
-          issue_number: payload.issue.number,
-        });
-        return;
-      }
+    if (!config.allowPublicQuery && !(await checkUserAccess(context, username))) {
+      return;
     }
     const access = await supabase.access.getAccess(id);
     const wallet = await supabase.wallet.getWallet(id);
@@ -50,7 +55,7 @@ User information for ${username} was not found.
         body.push(`| Wallet | ${wallet.address} |`);
       }
       if (access) {
-        body.push(`| Access | \`\`\`${JSON.stringify({ multiplier_reason: access.multiplier_reason, labels: access.labels }, null, 2)}\`\`\` |`);
+        body.push(`| Access | \`\`\`${Array.isArray(access.labels) ? access.labels.join(", ") : JSON.stringify(access.labels, null, 2)}\`\`\` |`);
       }
     }
     await octokit.issues.createComment({
