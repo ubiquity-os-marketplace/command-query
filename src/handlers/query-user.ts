@@ -13,12 +13,7 @@ async function checkUserAccess(context: Context, username: string) {
   // https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user--status-codes
   // 204 means the user is part of the Organization
   if (status !== 204) {
-    await octokit.issues.createComment({
-      body: `\`\`\`User ${username} cannot request another user as it is not member of the organization.\`\`\``,
-      owner: payload.repository.owner.login,
-      repo: payload.repository.name,
-      issue_number: payload.issue.number,
-    });
+    await context.logger.fatal(`User ${username} cannot request another user as it is not member of the organization.`);
     return false;
   }
   return true;

@@ -9,51 +9,51 @@ import { Env } from "./types/env";
 import { PluginInputs } from "./types/plugin-input";
 
 export async function run(inputs: PluginInputs, env: Env) {
+  const octokit = new Octokit({ auth: inputs.authToken });
+  const logger: Context["logger"] = {
+    debug(message: unknown, ...optionalParams: unknown[]) {
+      console.debug(message, ...optionalParams);
+    },
+    info(message: unknown, ...optionalParams: unknown[]) {
+      console.log(message, ...optionalParams);
+    },
+    warn(message: unknown, ...optionalParams: unknown[]) {
+      console.warn(message, ...optionalParams);
+    },
+    error(message: unknown, ...optionalParams: unknown[]) {
+      console.error(message, ...optionalParams);
+    },
+    async fatal(message: unknown, ...optionalParams: unknown[]) {
+      console.error(message, ...optionalParams);
+      try {
+        await octokit.issues.createComment({
+          body: `\`\`\`
+Failed to run command-query-user.
+${message}
+
+${commandParser.helpInformation()}
+\`\`\``,
+          owner: context.payload.repository.owner.login,
+          repo: context.payload.repository.name,
+          issue_number: context.payload.issue.number,
+        });
+      } finally {
+        console.error(message, ...optionalParams);
+      }
+    },
+  };
   if (inputs.eventName !== "issue_comment.created") {
-    console.warn(`Unsupported event ${inputs.eventName}, skipping.`);
+    logger.warn(`Unsupported event ${inputs.eventName}, skipping.`);
     return;
   }
   const args = inputs.eventPayload.comment.body.trim().split(/\s+/);
-  const octokit = new Octokit({ auth: inputs.authToken });
-  console.log("inputs", inputs);
   const supabase = createClient<Database>(env.SUPABASE_URL, env.SUPABASE_KEY);
   const context = {
     eventName: inputs.eventName,
     payload: inputs.eventPayload,
     config: inputs.settings,
     octokit,
-    logger: {
-      debug(message: unknown, ...optionalParams: unknown[]) {
-        console.debug(message, ...optionalParams);
-      },
-      info(message: unknown, ...optionalParams: unknown[]) {
-        console.log(message, ...optionalParams);
-      },
-      warn(message: unknown, ...optionalParams: unknown[]) {
-        console.warn(message, ...optionalParams);
-      },
-      error(message: unknown, ...optionalParams: unknown[]) {
-        console.error(message, ...optionalParams);
-      },
-      async fatal(message: unknown, ...optionalParams: unknown[]) {
-        console.error(message, ...optionalParams);
-        try {
-          await octokit.issues.createComment({
-            body: `\`\`\`
-Failed to run command-query-user.
-${message}
-
-${commandParser.helpInformation()}
-\`\`\``,
-            owner: context.payload.repository.owner.login,
-            repo: context.payload.repository.name,
-            issue_number: context.payload.issue.number,
-          });
-        } finally {
-          console.error(message, ...optionalParams);
-        }
-      },
-    },
+    logger,
     adapters: {} as unknown as ReturnType<typeof createAdapters>,
   } as Context;
   context.adapters = createAdapters(supabase, context);
