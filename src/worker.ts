@@ -1,10 +1,7 @@
 import { Value } from "@sinclair/typebox/value";
-import { config } from "dotenv";
 import { run } from "./run";
 import { Env } from "./types/env";
 import { commandQueryUserScheme } from "./types/plugin-input";
-
-config();
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
