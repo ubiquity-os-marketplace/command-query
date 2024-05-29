@@ -73,7 +73,7 @@ describe("User tests", () => {
             settings: { allowPublicQuery: true },
             eventPayload: commentCreatedPayload,
           } as PluginInputs,
-          { SUPABASE_URL: "", SUPABASE_KEY: "", UBIQUIBOT_TOKEN: "" }
+          { SUPABASE_URL: "", SUPABASE_KEY: "" }
         )
     ).not.toThrow();
   });
@@ -96,7 +96,7 @@ describe("User tests", () => {
               },
             },
           } as PluginInputs,
-          { SUPABASE_URL: "", SUPABASE_KEY: "", UBIQUIBOT_TOKEN: "" }
+          { SUPABASE_URL: "", SUPABASE_KEY: "" }
         )
     ).not.toThrow();
   });
@@ -119,7 +119,7 @@ describe("User tests", () => {
               },
             },
           } as PluginInputs,
-          { SUPABASE_URL: "", SUPABASE_KEY: "", UBIQUIBOT_TOKEN: "" }
+          { SUPABASE_URL: "", SUPABASE_KEY: "" }
         )
     ).not.toThrow();
   });
