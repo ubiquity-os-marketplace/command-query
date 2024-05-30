@@ -5,15 +5,13 @@ async function checkUserAccess(context: Context, username: string) {
   if (!payload.organization || !payload.comment.user?.name) {
     throw new Error("Missing Organization / User from payload, cannot check for organization membership.");
   }
-  const { status } = await octokit.orgs.checkMembershipForUser({
+  const { status } = await octokit.repos.checkCollaborator({
     username: payload.comment.user.name,
-    org: payload.organization.login,
+    repo: payload.repository.name,
+    owner: payload.repository.owner.login,
   });
-  // @ts-expect-error Somehow typing seems wrong but according to
-  // https://docs.github.com/en/rest/orgs/members?apiVersion=2022-11-28#check-organization-membership-for-a-user--status-codes
-  // 204 means the user is part of the Organization
   if (status !== 204) {
-    await context.logger.fatal(`User ${username} cannot request another user as it is not member of the organization.`);
+    await context.logger.fatal(`User ${payload.comment.user.name} cannot request user ${username} as it is not a collaborator.`);
     return false;
   }
   return true;
