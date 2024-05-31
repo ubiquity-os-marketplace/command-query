@@ -13,10 +13,11 @@ async function checkUserAccess(context: Context, username: string) {
     });
   } catch (e) {
     console.log(JSON.stringify(e));
-    if (!!e && typeof e === "object" && "statusCode" in e && e.statusCode === 404) {
+    if (!!e && typeof e === "object" && "status" in e && e.status === 404) {
       await context.logger.fatal(`User ${payload.comment.user.name} cannot request user ${username} as it is not a collaborator. ${e}`);
+      return false;
     }
-    return false;
+    throw e;
   }
   return true;
 }
