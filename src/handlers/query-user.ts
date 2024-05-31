@@ -12,7 +12,6 @@ async function checkUserAccess(context: Context, username: string) {
       owner: payload.repository.owner.login,
     });
   } catch (e) {
-    console.log(JSON.stringify(e));
     if (!!e && typeof e === "object" && "status" in e && e.status === 404) {
       await context.logger.fatal(`User @${payload.comment.user.login} cannot request user ${username} as it is not a collaborator.`);
       return false;
