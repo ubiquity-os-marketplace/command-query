@@ -2,8 +2,8 @@ import { Context } from "../types/context";
 
 async function checkUserAccess(context: Context, username: string) {
   const { octokit, payload } = context;
-  if (!payload.organization || !payload.comment.user?.name) {
-    throw new Error("Missing Organization / User from payload, cannot check for organization membership.");
+  if (!payload.comment.user?.name) {
+    throw new Error("Missing User from payload, cannot check for collaborator status.");
   }
   const { status } = await octokit.repos.checkCollaborator({
     username: payload.comment.user.name,
