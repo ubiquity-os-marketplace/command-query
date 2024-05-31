@@ -2,18 +2,20 @@ import { Context } from "../types/context";
 
 async function checkUserAccess(context: Context, username: string) {
   const { octokit, payload } = context;
-  console.log(JSON.stringify(payload, null, 2));
   if (!payload.comment.user?.login) {
     throw new Error("Missing User Login from payload, cannot check for collaborator status.");
   }
-  const { status } = await octokit.repos.checkCollaborator({
-    username: payload.comment.user.login,
-    repo: payload.repository.name,
-    owner: payload.repository.owner.login,
-  });
-  console.log("status", status);
-  if (status !== 204) {
-    await context.logger.fatal(`User ${payload.comment.user.name} cannot request user ${username} as it is not a collaborator.`);
+  try {
+    await octokit.repos.checkCollaborator({
+      username: payload.comment.user.login,
+      repo: payload.repository.name,
+      owner: payload.repository.owner.login,
+    });
+  } catch (e) {
+    console.log(JSON.stringify(e));
+    if (!!e && typeof e === "object" && "statusCode" in e && e.statusCode === 404) {
+      await context.logger.fatal(`User ${payload.comment.user.name} cannot request user ${username} as it is not a collaborator. ${e}`);
+    }
     return false;
   }
   return true;
