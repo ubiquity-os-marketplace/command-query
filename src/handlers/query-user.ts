@@ -10,7 +10,7 @@ async function checkUserAccess(context: Context, username: string) {
     repo: payload.repository.name,
     owner: payload.repository.owner.login,
   });
-  console.log("status");
+  console.log("status", status);
   if (status !== 204) {
     await context.logger.fatal(`User ${payload.comment.user.name} cannot request user ${username} as it is not a collaborator.`);
     return false;
