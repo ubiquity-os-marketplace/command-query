@@ -2,6 +2,7 @@ import { Context } from "../types/context";
 
 async function checkUserAccess(context: Context, username: string) {
   const { octokit, payload } = context;
+  console.log(JSON.stringify(payload, null, 2));
   if (!payload.comment.user?.name) {
     throw new Error("Missing User from payload, cannot check for collaborator status.");
   }
