@@ -9,7 +9,7 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "sonarjs", "filename-rules"],
   extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:sonarjs/recommended"],
-  ignorePatterns: ["**/*.js"],
+  ignorePatterns: ["**/*.js", "src/types/database.ts"],
   rules: {
     "filename-rules/match": [2, /^(e2e\.ts$|.*\/e2e\.ts$|[a-z]+(?:[-._a-z]+)*\.ts|\.[a-z]+)$/],
     "prefer-arrow-callback": ["warn", { allowNamedFunctions: true }],
