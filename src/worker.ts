@@ -20,7 +20,7 @@ export default {
         });
       }
       const webhookPayload = await request.json();
-      webhookPayload.settings = Value.Decode(commandQueryUserScheme, Value.Default(commandQueryUserScheme, JSON.parse(webhookPayload.settings)));
+      webhookPayload.settings = Value.Decode(commandQueryUserScheme, Value.Default(commandQueryUserScheme, webhookPayload.settings));
       await run(webhookPayload, env);
       return new Response(JSON.stringify("OK"), { status: 200, headers: { "content-type": "application/json" } });
     } catch (error) {
