@@ -9,14 +9,8 @@ export default {
     try {
       if (request.method === "GET") {
         const url = new URL(request.url);
-        console.log(`Request url`, url);
-        if (url.pathname === "manifest.json") {
+        if (url.pathname === "/manifest.json") {
           return new Response(JSON.stringify(manifest), {
-            headers: { "content-type": "application/json" },
-          });
-        } else {
-          return new Response(JSON.stringify(url.pathname), {
-            status: 400,
             headers: { "content-type": "application/json" },
           });
         }
