@@ -14,6 +14,11 @@ export default {
           return new Response(JSON.stringify(manifest), {
             headers: { "content-type": "application/json" },
           });
+        } else {
+          return new Response(JSON.stringify(url), {
+            status: 400,
+            headers: { "content-type": "application/json" },
+          });
         }
       }
       if (request.method !== "POST") {
