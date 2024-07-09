@@ -15,7 +15,7 @@ export default {
             headers: { "content-type": "application/json" },
           });
         } else {
-          return new Response(JSON.stringify(url), {
+          return new Response(JSON.stringify(url.pathname), {
             status: 400,
             headers: { "content-type": "application/json" },
           });
