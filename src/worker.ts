@@ -2,10 +2,19 @@ import { Value } from "@sinclair/typebox/value";
 import { run } from "./run";
 import { Env } from "./types/env";
 import { commandQueryUserScheme } from "./types/plugin-input";
+import manifest from "../manifest.json";
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     try {
+      if (request.method === "GET") {
+        console.log(`Request url`, request.url);
+        if (request.url === "manifest.json") {
+          return new Response(JSON.stringify(manifest), {
+            headers: { "content-type": "application/json" },
+          });
+        }
+      }
       if (request.method !== "POST") {
         return new Response(JSON.stringify({ error: `Only POST requests are supported.` }), {
           status: 405,
