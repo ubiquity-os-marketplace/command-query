@@ -34,7 +34,8 @@
     "@octokit/webhooks": "13.2.7",
     "@sinclair/typebox": "0.32.30",
     "@supabase/supabase-js": "2.43.2",
-    "commander": "12.1.0"
+    "commander": "12.1.0",
+    "typebox-validators": "0.3.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.6.1",

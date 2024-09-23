@@ -1,4 +1,5 @@
 import { EmitterWebhookEvent as WebhookEvent, EmitterWebhookEventName as WebhookEventName } from "@octokit/webhooks";
+import { StandardValidator } from "typebox-validators";
 import { SupportedEvents } from "./context";
 import { StaticDecode, Type as T } from "@sinclair/typebox";
 
@@ -11,11 +12,13 @@ export interface PluginInputs<T extends WebhookEventName = SupportedEvents> {
   ref: string;
 }
 
-export const commandQueryUserScheme = T.Object({
+export const commandQueryUserSchema = T.Object({
   /**
    * Allows any user to query anyone else. If false, only org members can query others.
    */
   allowPublicQuery: T.Boolean({ default: true }),
 });
 
-export type CommandQuerySettings = StaticDecode<typeof commandQueryUserScheme>;
+export const commandQueryUserSchemaValidator = new StandardValidator(commandQueryUserSchema);
+
+export type CommandQuerySettings = StaticDecode<typeof commandQueryUserSchema>;
