@@ -1,4 +1,4 @@
-# `@ubiquibot/command-query-user`
+# `@ubiquity-os-marketplace/command-query-user`
 
 This package helps users querying their information, from they wallet address, label access control or current XP.
 
@@ -45,7 +45,7 @@ For convenience, you can find an `.http` file with a valid request [here](/tests
 A valid configuration can be like:
 
 ```yaml
-- plugin: https://ubiquibot-command-query-user.ubq.fi
+- plugin: https://os.ubq.fi/command-query
   with:
     allowPublicQuery: true
 ```
