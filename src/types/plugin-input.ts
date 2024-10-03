@@ -12,13 +12,13 @@ export interface PluginInputs<T extends WebhookEventName = SupportedEvents> {
   ref: string;
 }
 
-export const commandQueryUserSchema = T.Object({
+export const pluginSettingsSchema = T.Object({
   /**
    * Allows any user to query anyone else. If false, only org members can query others.
    */
   allowPublicQuery: T.Boolean({ default: true }),
 });
 
-export const commandQueryUserSchemaValidator = new StandardValidator(commandQueryUserSchema);
+export const commandQueryUserSchemaValidator = new StandardValidator(pluginSettingsSchema);
 
-export type CommandQuerySettings = StaticDecode<typeof commandQueryUserSchema>;
+export type CommandQuerySettings = StaticDecode<typeof pluginSettingsSchema>;
