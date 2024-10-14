@@ -1,6 +1,6 @@
 import { Command, InvalidArgumentError } from "commander";
 import packageJson from "../../package.json";
-import { CommandContext } from "../types/plugin-input";
+import { CommandContext } from "../types/context";
 import { queryUser } from "./query-user";
 
 export class CommandParser {

@@ -1,4 +1,4 @@
-import { CommandContext } from "../types/plugin-input";
+import { CommandContext } from "../types/context";
 
 async function checkUserAccess(context: CommandContext, username: string) {
   const { octokit, payload } = context;

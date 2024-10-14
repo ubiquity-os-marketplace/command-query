@@ -1,6 +1,6 @@
 import { CommanderError } from "commander";
 import { CommandParser } from "./handlers/command-parser";
-import { CommandContext } from "./types/plugin-input";
+import { CommandContext } from "./types/context";
 
 export async function run(context: CommandContext) {
   const { octokit, logger, eventName, payload } = context;

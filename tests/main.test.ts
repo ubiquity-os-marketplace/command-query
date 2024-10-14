@@ -1,7 +1,7 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, it } from "@jest/globals";
 import { drop } from "@mswjs/data";
 import { run } from "../src/run";
-import { CommandContext } from "../src/types/plugin-input";
+import { CommandContext } from "../src/types/context";
 import { db } from "./__mocks__/db";
 import { server } from "./__mocks__/node";
 import commentCreatedPayload from "./__mocks__/payloads/comment-created.json";
