@@ -10,7 +10,7 @@
   },
   "scripts": {
     "prebuild": "dotenv -- cross-env yarn supabase:generate:remote",
-    "dev": "tsx src/worker.ts",
+    "dev": "wrangler dev --env dev --port 4000",
     "format": "run-s format:lint format:prettier format:cspell",
     "format:lint": "eslint --fix .",
     "format:prettier": "prettier --write .",
