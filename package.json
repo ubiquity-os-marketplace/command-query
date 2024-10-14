@@ -30,7 +30,6 @@
     "open-source"
   ],
   "dependencies": {
-    "@hono/node-server": "^1.13.2",
     "@octokit/rest": "^20.1.0",
     "@octokit/webhooks": "^12.3.1",
     "@sinclair/typebox": "0.32.30",
