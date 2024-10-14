@@ -4,7 +4,7 @@
   "ubiquity:listeners": ["issue_comment.created"],
   "commands": {
     "query": {
-      "ubiquity:example": "/query @ubiquibot",
+      "ubiquity:example": "/query @UbiquityOS",
       "description": "Returns the user's wallet, access, and multiplier information."
     }
   },
