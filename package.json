@@ -30,6 +30,7 @@
     "open-source"
   ],
   "dependencies": {
+    "@octokit/rest": "^20.1.0",
     "@sinclair/typebox": "0.32.30",
     "@supabase/supabase-js": "2.43.2",
     "@ubiquity-os/ubiquity-os-kernel": "^2.2.0",

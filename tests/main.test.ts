@@ -1,7 +1,12 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, it } from "@jest/globals";
 import { drop } from "@mswjs/data";
+import { Octokit } from "@octokit/rest";
+import { createClient } from "@supabase/supabase-js";
+import { Logs } from "@ubiquity-os/ubiquity-os-logger";
+import { createAdapters } from "../src/adapters";
 import { run } from "../src/run";
 import { CommandContext } from "../src/types/context";
+import { Database } from "../src/types/database";
 import { db } from "./__mocks__/db";
 import { server } from "./__mocks__/node";
 import commentCreatedPayload from "./__mocks__/payloads/comment-created.json";
@@ -62,17 +67,23 @@ describe("User tests", () => {
   });
 
   it("Should run the command", async () => {
-    expect(
-      async () =>
-        await run({
-          eventName: event,
-          ref: "",
-          authToken: "",
-          stateId: "",
-          settings: { allowPublicQuery: true },
-          eventPayload: commentCreatedPayload,
-        } as unknown as CommandContext)
-    ).not.toThrow();
+    const context = {
+      eventName: event,
+      ref: "",
+      authToken: "",
+      stateId: "",
+      config: { allowPublicQuery: true },
+      payload: commentCreatedPayload,
+      logger: new Logs("debug"),
+      adapters: {},
+      env: {
+        SUPABASE_URL: "",
+        SUPABASE_KEY: "",
+      },
+      octokit: new Octokit(),
+    } as unknown as CommandContext;
+    context.adapters = createAdapters(createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY), context);
+    expect(async () => await run(context)).not.toThrow();
   });
 
   it("Should ignore invalid command", async () => {
