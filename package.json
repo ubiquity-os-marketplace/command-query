@@ -2,7 +2,7 @@
   "name": "command-query-user",
   "version": "1.0.0",
   "description": "Queries a user and retrieves its related information, such as the wallet, the label access control, or the current XP.",
-  "main": "src/worker.ts",
+  "main": "src/index.ts",
   "author": "Ubiquity DAO",
   "license": "MIT",
   "engines": {
