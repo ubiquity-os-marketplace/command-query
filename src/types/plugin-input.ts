@@ -1,8 +1,11 @@
 import { EmitterWebhookEvent as WebhookEvent, EmitterWebhookEventName as WebhookEventName } from "@octokit/webhooks";
+import { Context } from "@ubiquity-os/ubiquity-os-kernel";
 import { LOG_LEVEL } from "@ubiquity-os/ubiquity-os-logger";
 import { StandardValidator } from "typebox-validators";
+import { createAdapters } from "../adapters";
 import { SupportedEvents } from "./context";
 import { StaticDecode, Type as T } from "@sinclair/typebox";
+import { Env } from "./env";
 
 export interface PluginInputs<T extends WebhookEventName = SupportedEvents> {
   stateId: string;
@@ -24,3 +27,5 @@ export const pluginSettingsSchema = T.Object({
 export const commandQueryUserSchemaValidator = new StandardValidator(pluginSettingsSchema);
 
 export type PluginSettings = StaticDecode<typeof pluginSettingsSchema>;
+
+export type CommandContext = Context<PluginSettings, Env, SupportedEvents> & { adapters: ReturnType<typeof createAdapters> };
