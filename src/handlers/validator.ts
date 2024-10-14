@@ -1,10 +1,10 @@
 import { TransformDecodeCheckError, TransformDecodeError, Value, ValueError } from "@sinclair/typebox/value";
 import { Env, envConfigValidator, envSchema } from "../types/env";
-import { CommandQuerySettings, pluginSettingsSchema, commandQueryUserSchemaValidator } from "../types/plugin-input";
+import { PluginSettings, pluginSettingsSchema, commandQueryUserSchemaValidator } from "../types/plugin-input";
 
 export function validateAndDecodeSchemas(env: Env, rawSettings: object) {
   const errors: ValueError[] = [];
-  const settings = Value.Default(pluginSettingsSchema, rawSettings) as CommandQuerySettings;
+  const settings = Value.Default(pluginSettingsSchema, rawSettings) as PluginSettings;
 
   if (!commandQueryUserSchemaValidator.test(settings)) {
     for (const error of commandQueryUserSchemaValidator.errors(settings)) {

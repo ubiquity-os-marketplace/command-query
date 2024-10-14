@@ -1,7 +1,8 @@
-import { EmitterWebhookEvent as WebhookEvent, EmitterWebhookEventName as WebhookEventName } from "@octokit/webhooks";
 import { Octokit } from "@octokit/rest";
-import { CommandQuerySettings } from "./plugin-input";
+import { EmitterWebhookEvent as WebhookEvent, EmitterWebhookEventName as WebhookEventName } from "@octokit/webhooks";
+import { Logs } from "@ubiquity-os/ubiquity-os-logger";
 import { createAdapters } from "../adapters";
+import { PluginSettings } from "./plugin-input";
 
 export type SupportedEvents = "issue_comment.created";
 
@@ -10,12 +11,6 @@ export interface Context<T extends WebhookEventName = SupportedEvents> {
   payload: WebhookEvent<T>["payload"];
   octokit: InstanceType<typeof Octokit>;
   adapters: ReturnType<typeof createAdapters>;
-  config: CommandQuerySettings;
-  logger: {
-    fatal: (message: unknown, ...optionalParams: unknown[]) => Promise<void>;
-    error: (message: unknown, ...optionalParams: unknown[]) => void;
-    warn: (message: unknown, ...optionalParams: unknown[]) => void;
-    info: (message: unknown, ...optionalParams: unknown[]) => void;
-    debug: (message: unknown, ...optionalParams: unknown[]) => void;
-  };
+  config: PluginSettings;
+  logger: Logs;
 }

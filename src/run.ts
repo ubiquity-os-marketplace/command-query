@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { Logs } from "@ubiquity-os/ubiquity-os-logger";
 import { CommanderError } from "commander";
 import { Octokit } from "@octokit/rest";
 import { createAdapters } from "./adapters";
@@ -10,40 +11,9 @@ import { PluginInputs } from "./types/plugin-input";
 
 export async function run(inputs: PluginInputs, env: Env) {
   const octokit = new Octokit({ auth: inputs.authToken });
-  const logger: Context["logger"] = {
-    debug(message: unknown, ...optionalParams: unknown[]) {
-      console.debug(message, ...optionalParams);
-    },
-    info(message: unknown, ...optionalParams: unknown[]) {
-      console.log(message, ...optionalParams);
-    },
-    warn(message: unknown, ...optionalParams: unknown[]) {
-      console.warn(message, ...optionalParams);
-    },
-    error(message: unknown, ...optionalParams: unknown[]) {
-      console.error(message, ...optionalParams);
-    },
-    async fatal(message: unknown, ...optionalParams: unknown[]) {
-      console.error(message, ...optionalParams);
-      try {
-        await octokit.issues.createComment({
-          body: `\`\`\`
-Failed to run command-query-user.
-${message}
-
-${commandParser.helpInformation()}
-\`\`\``,
-          owner: context.payload.repository.owner.login,
-          repo: context.payload.repository.name,
-          issue_number: context.payload.issue.number,
-        });
-      } finally {
-        console.error(message, ...optionalParams);
-      }
-    },
-  };
+  const logger = new Logs("verbose");
   if (inputs.eventName !== "issue_comment.created") {
-    logger.warn(`Unsupported event ${inputs.eventName}, skipping.`);
+    logger.info(`Unsupported event ${inputs.eventName}, skipping.`);
     return;
   }
   const args = inputs.eventPayload.comment.body.trim().split(/\s+/);
@@ -63,10 +33,21 @@ ${commandParser.helpInformation()}
   } catch (e) {
     if (e instanceof CommanderError) {
       if (e.code !== "commander.unknownCommand") {
-        await context.logger.fatal(e);
+        context.logger.fatal("Commander error", { e });
+        await octokit.issues.createComment({
+          body: `\`\`\`
+          Failed to run command-query-user.
+          ${e.message}
+
+          ${commandParser.helpInformation()}
+          \`\`\``,
+          owner: context.payload.repository.owner.login,
+          repo: context.payload.repository.name,
+          issue_number: context.payload.issue.number,
+        });
       }
     } else {
-      context.logger.error("error", e);
+      context.logger.error("error", { e });
       throw e;
     }
   }
