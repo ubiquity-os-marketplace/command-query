@@ -15,7 +15,6 @@ export default createPlugin<PluginSettings, Env, SupportedEvents>(
   },
   // @ts-expect-error strings cannot be assigned to events
   manifest
-).then((server) => {
-  console.log("Plugin initialized.");
-  return server;
-});
+).then((app) => ({
+  fetch: app.fetch,
+}));
