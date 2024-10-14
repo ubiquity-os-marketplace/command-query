@@ -1562,7 +1562,7 @@
     before-after-hook "^3.0.2"
     universal-user-agent "^7.0.0"
 
-"@octokit/core@^5.0.1", "@octokit/core@^5.0.2":
+"@octokit/core@^5.0.1":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@octokit/core/-/core-5.2.0.tgz#ddbeaefc6b44a39834e1bb2e58a49a117672a7ea"
   integrity sha512-1LFfa/qnMQvEOAdzlQymH0ulepxbxnCYAKJZfMci/5XJyIHWgEYnDmgnKakbTh7CH2tFQ5O60oYDvns4i9RAIg==
@@ -1639,13 +1639,6 @@
   resolved "https://registry.yarnpkg.com/@octokit/openapi-webhooks-types/-/openapi-webhooks-types-8.3.0.tgz#a7a4da00c0f27f7f5708eb3fcebefa08f8d51125"
   integrity sha512-vKLsoR4xQxg4Z+6rU/F65ItTUz/EXbD+j/d4mlq2GW8TsA4Tc8Kdma2JTAAJ5hrKWUQzkR/Esn2fjsqiVRYaQg==
 
-"@octokit/plugin-paginate-rest@11.3.1":
-  version "11.3.1"
-  resolved "https://registry.yarnpkg.com/@octokit/plugin-paginate-rest/-/plugin-paginate-rest-11.3.1.tgz#fe92d04b49f134165d6fbb716e765c2f313ad364"
-  integrity sha512-ryqobs26cLtM1kQxqeZui4v8FeznirUsksiA+RYemMPJ7Micju0WSkv50dBksTuZks9O5cg4wp+t8fZ/cLY56g==
-  dependencies:
-    "@octokit/types" "^13.5.0"
-
 "@octokit/plugin-paginate-rest@11.3.3":
   version "11.3.3"
   resolved "https://registry.yarnpkg.com/@octokit/plugin-paginate-rest/-/plugin-paginate-rest-11.3.3.tgz#efc97ba66aae6797e2807a082f99b9cfc0e05aba"
@@ -1659,18 +1652,6 @@
   integrity sha512-wfGhE/TAkXZRLjksFXuDZdmGnJQHvtU/joFQdweXUgzo1XwvBCD4o4+75NtFfjfLK5IwLf9vHTfSiU3sLRYpRw==
   dependencies:
     "@octokit/types" "^12.6.0"
-
-"@octokit/plugin-request-log@^4.0.0":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@octokit/plugin-request-log/-/plugin-request-log-4.0.1.tgz#98a3ca96e0b107380664708111864cb96551f958"
-  integrity sha512-GihNqNpGHorUrO7Qa9JbAl0dbLnqJVrV8OXe2Zm5/Y4wFkZQDfTreBzVmiRfJVfE4mClXdihHnbpyyO9FSX4HA==
-
-"@octokit/plugin-rest-endpoint-methods@13.2.2":
-  version "13.2.2"
-  resolved "https://registry.yarnpkg.com/@octokit/plugin-rest-endpoint-methods/-/plugin-rest-endpoint-methods-13.2.2.tgz#af8e5dd2cddfea576f92ffaf9cb84659f302a638"
-  integrity sha512-EI7kXWidkt3Xlok5uN43suK99VWqc8OaIMktY9d9+RNKl69juoTyxmLoWPIZgJYzi41qj/9zU7G/ljnNOJ5AFA==
-  dependencies:
-    "@octokit/types" "^13.5.0"
 
 "@octokit/plugin-rest-endpoint-methods@13.2.4":
   version "13.2.4"
@@ -1703,7 +1684,7 @@
     "@octokit/types" "^13.0.0"
     bottleneck "^2.15.3"
 
-"@octokit/request-error@^5.0.0", "@octokit/request-error@^5.1.0":
+"@octokit/request-error@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@octokit/request-error/-/request-error-5.1.0.tgz#ee4138538d08c81a60be3f320cd71063064a3b30"
   integrity sha512-GETXfE05J0+7H2STzekpKObFe765O5dlAKUTLNGeH+x47z7JjXHfsHKo5z21D/o/IOZTUEI6nyWyR+bZVP/n5Q==
@@ -1739,16 +1720,6 @@
     "@octokit/types" "^13.1.0"
     universal-user-agent "^7.0.2"
 
-"@octokit/rest@^20.1.0":
-  version "20.1.1"
-  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-20.1.1.tgz#ec775864f53fb42037a954b9a40d4f5275b3dc95"
-  integrity sha512-MB4AYDsM5jhIHro/dq4ix1iWTLGToIGk6cWF5L6vanFaMble5jTX/UBQyiv05HsWnwUtY8JrfHy2LWfKwihqMw==
-  dependencies:
-    "@octokit/core" "^5.0.2"
-    "@octokit/plugin-paginate-rest" "11.3.1"
-    "@octokit/plugin-request-log" "^4.0.0"
-    "@octokit/plugin-rest-endpoint-methods" "13.2.2"
-
 "@octokit/types@13.5.0":
   version "13.5.0"
   resolved "https://registry.yarnpkg.com/@octokit/types/-/types-13.5.0.tgz#4796e56b7b267ebc7c921dcec262b3d5bfb18883"
@@ -1770,11 +1741,6 @@
   dependencies:
     "@octokit/openapi-types" "^22.2.0"
 
-"@octokit/webhooks-methods@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@octokit/webhooks-methods/-/webhooks-methods-4.1.0.tgz#681a6c86c9b21d4ec9e29108fb053ae7512be033"
-  integrity sha512-zoQyKw8h9STNPqtm28UGOYFE7O6D4Il8VJwhAtMHFt2C4L0VQT1qGKLeefUOqHNs1mNRYSadVv7x0z8U2yyeWQ==
-
 "@octokit/webhooks-methods@^5.0.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@octokit/webhooks-methods/-/webhooks-methods-5.1.0.tgz#13b6c08f89902c1ab0ddf31c6eeeec9c2772cfe6"
@@ -1785,11 +1751,6 @@
   resolved "https://registry.yarnpkg.com/@octokit/webhooks-types/-/webhooks-types-7.5.1.tgz#e05399ab6bbbef8b78eb6bfc1a2cb138ea861104"
   integrity sha512-1dozxWEP8lKGbtEu7HkRbK1F/nIPuJXNfT0gd96y6d3LcHZTtRtlf8xz3nicSJfesADxJyDh+mWBOsdLkqgzYw==
 
-"@octokit/webhooks-types@7.6.1":
-  version "7.6.1"
-  resolved "https://registry.yarnpkg.com/@octokit/webhooks-types/-/webhooks-types-7.6.1.tgz#bc96371057c2d54c982c9f8f642655b26cd588eb"
-  integrity sha512-S8u2cJzklBC0FgTwWVLaM8tMrDuDMVE4xiTK4EYXM9GntyvrdbSoxqDQa+Fh57CCNApyIpyeqPhhFEmHPfrXgw==
-
 "@octokit/webhooks@13.2.8":
   version "13.2.8"
   resolved "https://registry.yarnpkg.com/@octokit/webhooks/-/webhooks-13.2.8.tgz#8d7134870c327e413809c83a11b46e1896a6f0fe"
@@ -1799,16 +1760,6 @@
     "@octokit/request-error" "^6.0.1"
     "@octokit/webhooks-methods" "^5.0.0"
     aggregate-error "^5.0.0"
-
-"@octokit/webhooks@^12.3.1":
-  version "12.3.1"
-  resolved "https://registry.yarnpkg.com/@octokit/webhooks/-/webhooks-12.3.1.tgz#fd4de89ccb0560475411503951ce6469488c63a7"
-  integrity sha512-BVwtWE3rRXB9IugmQTfKspqjNa8q+ab73ddkV9k1Zok3XbuOxJUi4lTYk5zBZDhfWb/Y2H+RO9Iggm25gsqeow==
-  dependencies:
-    "@octokit/request-error" "^5.0.0"
-    "@octokit/webhooks-methods" "^4.1.0"
-    "@octokit/webhooks-types" "7.6.1"
-    aggregate-error "^3.1.0"
 
 "@open-draft/deferred-promise@^2.2.0":
   version "2.2.0"
@@ -2276,7 +2227,7 @@ agent-base@^7.0.2:
   dependencies:
     debug "^4.3.4"
 
-aggregate-error@^3.0.0, aggregate-error@^3.1.0:
+aggregate-error@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/aggregate-error/-/aggregate-error-3.1.0.tgz#92670ff50f5359bdb7a3e0d40d0ec30c5737687a"
   integrity sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==
