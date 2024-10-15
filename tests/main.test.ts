@@ -95,13 +95,20 @@ describe("User tests", () => {
           authToken: "",
           stateId: "",
           settings: { allowPublicQuery: true },
-          eventPayload: {
+          logger: new Logs("debug"),
+          adapters: {},
+          payload: {
             ...commentCreatedPayload,
             comment: {
               ...commentCreatedPayload.comment,
               body: "/foobar @ubiquibot",
             },
           },
+          env: {
+            SUPABASE_URL: "",
+            SUPABASE_KEY: "",
+          },
+          octokit: new Octokit(),
         } as unknown as CommandContext)
     ).not.toThrow();
   });
@@ -115,13 +122,20 @@ describe("User tests", () => {
           authToken: "",
           stateId: "",
           settings: { allowPublicQuery: true },
-          eventPayload: {
+          logger: new Logs("debug"),
+          adapters: {},
+          payload: {
             ...commentCreatedPayload,
             comment: {
               ...commentCreatedPayload.comment,
               body: "/query ubiquibot",
             },
           },
+          env: {
+            SUPABASE_URL: "",
+            SUPABASE_KEY: "",
+          },
+          octokit: new Octokit(),
         } as unknown as CommandContext)
     ).not.toThrow();
   });
