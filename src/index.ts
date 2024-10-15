@@ -7,17 +7,17 @@ import { run } from "./run";
 import { SupportedEvents } from "./types/context";
 import { Database } from "./types/database";
 import { Env } from "./types/env";
-import { PluginSettings } from "./types/plugin-input";
+import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 
 function createPluginWithEnv(env: Record<string, string>) {
   return createPlugin<PluginSettings, Env, SupportedEvents>(
     (context) => {
-      const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);
+      const supabase = createClient<Database>(env.SUPABASE_URL, env.SUPABASE_KEY);
       return run({ ...context, adapters: createAdapters(supabase, context) });
     },
     // @ts-expect-error strings cannot be assigned to events
     manifest,
-    { kernelPublicKey: env.KERNEL_PUBLIC_KEY }
+    { kernelPublicKey: env.KERNEL_PUBLIC_KEY, settingsSchema: pluginSettingsSchema }
   );
 }
 
