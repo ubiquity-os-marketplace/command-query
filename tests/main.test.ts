@@ -83,60 +83,58 @@ describe("User tests", () => {
       octokit: new Octokit(),
     } as unknown as CommandContext;
     context.adapters = createAdapters(createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY), context);
-    expect(async () => await run(context)).not.toThrow();
+    await expect(run(context)).resolves.not.toThrow();
   });
 
   it("Should ignore invalid command", async () => {
-    expect(
-      async () =>
-        await run({
-          eventName: event,
-          ref: "",
-          authToken: "",
-          stateId: "",
-          settings: { allowPublicQuery: true },
-          logger: new Logs("debug"),
-          adapters: {},
-          payload: {
-            ...commentCreatedPayload,
-            comment: {
-              ...commentCreatedPayload.comment,
-              body: "/foobar @ubiquibot",
-            },
+    await expect(
+      run({
+        eventName: event,
+        ref: "",
+        authToken: "",
+        stateId: "",
+        settings: { allowPublicQuery: true },
+        logger: new Logs("debug"),
+        adapters: {},
+        payload: {
+          ...commentCreatedPayload,
+          comment: {
+            ...commentCreatedPayload.comment,
+            body: "/foobar @ubiquibot",
           },
-          env: {
-            SUPABASE_URL: "",
-            SUPABASE_KEY: "",
-          },
-          octokit: new Octokit(),
-        } as unknown as CommandContext)
-    ).not.toThrow();
+        },
+        env: {
+          SUPABASE_URL: "",
+          SUPABASE_KEY: "",
+        },
+        octokit: new Octokit(),
+      } as unknown as CommandContext)
+    ).resolves.not.toThrow();
   });
 
   it("Should not throw on invalid arguments", async () => {
-    expect(
-      async () =>
-        await run({
-          eventName: event,
-          ref: "",
-          authToken: "",
-          stateId: "",
-          settings: { allowPublicQuery: true },
-          logger: new Logs("debug"),
-          adapters: {},
-          payload: {
-            ...commentCreatedPayload,
-            comment: {
-              ...commentCreatedPayload.comment,
-              body: "/query ubiquibot",
-            },
+    await expect(
+      run({
+        eventName: event,
+        ref: "",
+        authToken: "",
+        stateId: "",
+        settings: { allowPublicQuery: true },
+        logger: new Logs("debug"),
+        adapters: {},
+        payload: {
+          ...commentCreatedPayload,
+          comment: {
+            ...commentCreatedPayload.comment,
+            body: "/query ubiquibot",
           },
-          env: {
-            SUPABASE_URL: "",
-            SUPABASE_KEY: "",
-          },
-          octokit: new Octokit(),
-        } as unknown as CommandContext)
-    ).not.toThrow();
+        },
+        env: {
+          SUPABASE_URL: "",
+          SUPABASE_KEY: "",
+        },
+        octokit: new Octokit(),
+      } as unknown as CommandContext)
+    ).resolves.not.toThrow();
   });
 });

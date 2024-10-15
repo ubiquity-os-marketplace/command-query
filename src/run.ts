@@ -4,6 +4,7 @@ import { CommandContext } from "./types/context";
 
 export async function run(context: CommandContext) {
   const { octokit, logger, eventName, payload } = context;
+  console.log("running!");
   if (eventName !== "issue_comment.created") {
     logger.info(`Unsupported event ${eventName}, skipping.`);
     return;

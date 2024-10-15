@@ -37,6 +37,7 @@ export async function queryUser(context: CommandContext, username: string) {
     if (!config.allowPublicQuery && !(await checkUserAccess(context, username))) {
       return;
     }
+    console.log("here!");
     const access = await supabase.access.getAccess(id);
     const wallet = await supabase.wallet.getWallet(id);
     if (!access && !wallet) {
