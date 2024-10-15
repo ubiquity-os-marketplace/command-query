@@ -18,11 +18,11 @@ export async function run(context: CommandContext) {
         context.logger.fatal("Commander error", { e });
         await octokit.rest.issues.createComment({
           body: `\`\`\`
-          Failed to run command-query-user.
-          ${e.message}
+Failed to run command-query-user.
+${e.message}
 
-          ${commandParser.helpInformation()}
-          \`\`\``,
+${commandParser.helpInformation()}
+\`\`\``,
           owner: context.payload.repository.owner.login,
           repo: context.payload.repository.name,
           issue_number: context.payload.issue.number,
