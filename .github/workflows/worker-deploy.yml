@@ -35,15 +35,17 @@ jobs:
         id: wrangler_deploy
         uses: cloudflare/wrangler-action@v3
         with:
-          wranglerVersion: "3.79.0"
+          wranglerVersion: "3.80.4"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           secrets: |
             SUPABASE_URL
             SUPABASE_KEY
+            ${{ secrets.KERNEL_PUBLIC_KEY && secrets.KERNEL_PUBLIC_KEY != '' && 'KERNEL_PUBLIC_KEY' || '' }}
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          KERNEL_PUBLIC_KEY: ${{ secrets.KERNEL_PUBLIC_KEY }}
 
       - name: Write Deployment URL to Summary
         run: |

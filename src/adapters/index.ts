@@ -1,5 +1,5 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import { Context } from "../types/context";
+import { Context } from "@ubiquity-os/ubiquity-os-kernel";
 import { Database } from "../types/database";
 
 export function createAdapters(supabaseClient: SupabaseClient<Database>, context: Context) {
@@ -19,7 +19,7 @@ export function createAdapters(supabaseClient: SupabaseClient<Database>, context
         async getWallet(userId: number) {
           const { data, error } = await supabaseClient.from("users").select("*, wallets(address)").eq("id", userId).single();
           if (error) {
-            context.logger.error("Failed to fetch wallet for user", userId, error);
+            context.logger.error("Failed to fetch wallet for user", { userId, postgres: error });
             return null;
           }
           return data.wallets;

@@ -48,6 +48,7 @@ A valid configuration can be like:
 - plugin: https://os.ubq.fi/command-query
   with:
     allowPublicQuery: true
+    logLevel: INFO
 ```
 
 ## Testing
