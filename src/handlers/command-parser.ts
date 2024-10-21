@@ -11,7 +11,7 @@ export class CommandParser {
     program
       .command("/query")
       .usage("@<username>")
-      .argument("<username>", "User name to query, e.g. @ubiquibot", this._parseUser)
+      .argument("<username>", "User name to query, e.g. @UbiquityOS", this._parseUser)
       .action((username) => queryUser(context, username))
       .helpCommand(false)
       .exitOverride()
