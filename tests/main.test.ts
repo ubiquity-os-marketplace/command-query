@@ -100,7 +100,7 @@ describe("User tests", () => {
           ...commentCreatedPayload,
           comment: {
             ...commentCreatedPayload.comment,
-            body: "/foobar @ubiquibot",
+            body: "/foobar @ubiquity-os",
           },
         },
         env: {
