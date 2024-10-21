@@ -89,7 +89,7 @@
     "created_at": "2024-05-19T11:54:23Z",
     "updated_at": "2024-05-19T11:54:23Z",
     "author_association": "CONTRIBUTOR",
-    "body": "/query @ubiquity-os",
+    "body": "/query @UbiquityOS",
     "reactions": {
       "url": "https://api.github.com/repos/ubiquibot/comment-query-user/issues/comments/2119208855/reactions",
       "total_count": 0,

@@ -2,7 +2,7 @@
 # org_name: the organization you want to post to, e.g. "ubiquibot"
 # repo_name: the target repository, e.g "command-query-user"
 # issue_number: the number of the issue, same as the one you would see in the url to that issue, e.g. "1"
-# command: the command you want to test, e.g. "/query @ubiquity-os"
+# command: the command you want to test, e.g. "/query @UbiquityOS"
 # token: a valid GitHub token for auth, e.g. "ghs_xxxxx"
 
 ### POST a successful issue_comment.created request to the Worker
