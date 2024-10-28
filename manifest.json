@@ -14,31 +14,6 @@
       "allowPublicQuery": {
         "default": true,
         "type": "boolean"
-      },
-      "logLevel": {
-        "default": "info",
-        "anyOf": [
-          {
-            "const": "fatal",
-            "type": "string"
-          },
-          {
-            "const": "error",
-            "type": "string"
-          },
-          {
-            "const": "info",
-            "type": "string"
-          },
-          {
-            "const": "verbose",
-            "type": "string"
-          },
-          {
-            "const": "debug",
-            "type": "string"
-          }
-        ]
       }
     }
   }
