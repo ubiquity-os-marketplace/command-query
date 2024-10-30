@@ -11,9 +11,9 @@ import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 
 export default {
   async fetch(request: Request, env: Env, executionContext: ExecutionContext) {
-    const accountId = request.headers.get("cf-worker-account-id");
-    const workerName = request.headers.get("cf-worker-name");
-    console.log(JSON.stringify(request, null, 2), env, JSON.stringify(executionContext, null, 2), accountId, workerName);
+    console.log(
+      `https://dash.cloudflare.com/${env.CLOUDFLARE_ID}/workers/services/view/${env.CLOUDFLARE_WORKER_NAME}/production/observability/logs?granularity=0&time=%7B"type"%3A"absolute"%2C"to"%3A${Date.now() + 60000}%2C"from"%3A${Date.now()}%7D`
+    );
     return createPlugin<PluginSettings, Env, SupportedEvents>(
       (context) => {
         const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);
