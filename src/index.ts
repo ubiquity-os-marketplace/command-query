@@ -12,7 +12,7 @@ import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 export default {
   async fetch(request: Request, env: Env, executionContext: ExecutionContext) {
     const toTime = Date.now() + 60000;
-    const fromTime = Date.now();
+    const fromTime = Date.now() - 60000;
     const timeParam = encodeURIComponent(`{"type":"absolute","to":${toTime},"from":${fromTime}}`);
 
     console.log(
