@@ -20,6 +20,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Update wrangler.toml Name Field
+        id: update_toml
         run: |
           branch_name=$(echo '${{ github.event.ref }}' | sed 's#refs/heads/##' | sed 's#[^a-zA-Z0-9]#-#g')
           # Extract base name from wrangler.toml
@@ -31,6 +32,7 @@ jobs:
           # Update the wrangler.toml file
           sed -i "s/^name = .*/name = \"$new_name\"/" wrangler.toml
           echo "Updated wrangler.toml name to: $new_name"
+          echo "::set-output name=workerName::$new_name"
       - name: Deploy with Wrangler
         id: wrangler_deploy
         uses: cloudflare/wrangler-action@v3
@@ -42,10 +44,14 @@ jobs:
             SUPABASE_URL
             SUPABASE_KEY
             ${{ secrets.KERNEL_PUBLIC_KEY && secrets.KERNEL_PUBLIC_KEY != '' && 'KERNEL_PUBLIC_KEY' || '' }}
+            CLOUDFLARE_ACCOUNT_ID
+            CLOUDFLARE_WORKER_NAME
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
           KERNEL_PUBLIC_KEY: ${{ secrets.KERNEL_PUBLIC_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_WORKER_NAME: ${{ steps.update_toml.outputs.workerName }}
 
       - name: Write Deployment URL to Summary
         run: |
