@@ -11,7 +11,7 @@ import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 
 export default {
   async fetch(request: Request, env: Env, executionContext: ExecutionContext) {
-    console.log(request, env, executionContext);
+    console.log(JSON.stringify(request, null, 2), env, JSON.stringify(executionContext, null, 2));
     return createPlugin<PluginSettings, Env, SupportedEvents>(
       (context) => {
         const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);
