@@ -11,7 +11,9 @@ import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 
 export default {
   async fetch(request: Request, env: Env, executionContext: ExecutionContext) {
-    console.log(JSON.stringify(request, null, 2), env, JSON.stringify(executionContext, null, 2));
+    const accountId = request.headers.get("cf-worker-account-id");
+    const workerName = request.headers.get("cf-worker-name");
+    console.log(JSON.stringify(request, null, 2), env, JSON.stringify(executionContext, null, 2), accountId, workerName);
     return createPlugin<PluginSettings, Env, SupportedEvents>(
       (context) => {
         const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);
