@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { createPlugin, Manifest } from "@ubiquity-os/ubiquity-os-kernel";
+import { createPlugin } from "@ubiquity-os/ubiquity-os-kernel";
 import { ExecutionContext } from "hono";
 import manifest from "../manifest.json";
 import { createAdapters } from "./adapters";
@@ -11,20 +11,13 @@ import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 
 export default {
   async fetch(request: Request, env: Env, executionContext: ExecutionContext) {
-    const toTime = Date.now() + 60000;
-    const fromTime = Date.now() - 60000;
-    const timeParam = encodeURIComponent(`{"type":"absolute","to":${toTime},"from":${fromTime}}`);
-
-    console.log(
-      `https://dash.cloudflare.com/${env.CLOUDFLARE_ACCOUNT_ID}/workers/services/view/${env.CLOUDFLARE_WORKER_NAME}/production/observability/logs?granularity=0&time=${timeParam}`
-    );
     return createPlugin<PluginSettings, Env, SupportedEvents>(
       (context) => {
         const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);
         return run({ ...context, adapters: createAdapters(supabase, context) });
       },
-      manifest as Manifest,
-      // @ts-expect-error schemas are correct
+      // @ts-expect-error manifest is correct
+      manifest,
       { kernelPublicKey: env.KERNEL_PUBLIC_KEY, settingsSchema: pluginSettingsSchema, envSchema: envSchema }
     ).fetch(request, env, executionContext);
   },
