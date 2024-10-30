@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { createPlugin } from "@ubiquity-os/ubiquity-os-kernel";
+import { createPlugin, Manifest } from "@ubiquity-os/ubiquity-os-kernel";
 import { ExecutionContext } from "hono";
 import manifest from "../manifest.json";
 import { createAdapters } from "./adapters";
@@ -23,8 +23,8 @@ export default {
         const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);
         return run({ ...context, adapters: createAdapters(supabase, context) });
       },
-      // @ts-expect-error strings cannot be assigned to events
-      manifest,
+      manifest as Manifest,
+      // @ts-expect-error schemas are correct
       { kernelPublicKey: env.KERNEL_PUBLIC_KEY, settingsSchema: pluginSettingsSchema, envSchema: envSchema }
     ).fetch(request, env, executionContext);
   },
