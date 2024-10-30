@@ -11,16 +11,15 @@ import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 
 export default {
   async fetch(request: Request, env: Env, executionContext: ExecutionContext) {
-    return (
-      await createPlugin<PluginSettings, Env, SupportedEvents>(
-        (context) => {
-          const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);
-          return run({ ...context, adapters: createAdapters(supabase, context) });
-        },
-        // @ts-expect-error strings cannot be assigned to events
-        manifest,
-        { kernelPublicKey: env.KERNEL_PUBLIC_KEY, settingsSchema: pluginSettingsSchema, envSchema: envSchema }
-      )
+    console.log(request, env, executionContext);
+    return createPlugin<PluginSettings, Env, SupportedEvents>(
+      (context) => {
+        const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);
+        return run({ ...context, adapters: createAdapters(supabase, context) });
+      },
+      // @ts-expect-error strings cannot be assigned to events
+      manifest,
+      { kernelPublicKey: env.KERNEL_PUBLIC_KEY, settingsSchema: pluginSettingsSchema, envSchema: envSchema }
     ).fetch(request, env, executionContext);
   },
 };
