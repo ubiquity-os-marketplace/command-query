@@ -1,0 +1,14 @@
+name: "Update Configuration"
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  update:
+    name: "Update Configuration in manifest.json"
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - uses: ubiquity-os/action-deploy-plugin@main

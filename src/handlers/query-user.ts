@@ -1,27 +1,26 @@
-import { Context } from "../types/context";
+import { CommandContext } from "../types/context";
 
-async function checkUserAccess(context: Context, username: string) {
+async function checkUserAccess(context: CommandContext, username: string) {
   const { octokit, payload } = context;
   if (!payload.comment.user?.login) {
     throw new Error("Missing User Login from payload, cannot check for collaborator status.");
   }
   try {
-    await octokit.repos.checkCollaborator({
+    await octokit.rest.repos.checkCollaborator({
       username: payload.comment.user.login,
       repo: payload.repository.name,
       owner: payload.repository.owner.login,
     });
   } catch (e) {
     if (!!e && typeof e === "object" && "status" in e && e.status === 404) {
-      await context.logger.fatal(`User @${payload.comment.user.login} cannot request user ${username} as it is not a collaborator.`);
-      return false;
+      throw context.logger.fatal(`User @${payload.comment.user.login} cannot request user ${username} as it is not a collaborator.`);
     }
     throw e;
   }
   return true;
 }
 
-export async function queryUser(context: Context, username: string) {
+export async function queryUser(context: CommandContext, username: string) {
   const {
     octokit,
     payload,
@@ -32,7 +31,7 @@ export async function queryUser(context: Context, username: string) {
   try {
     const {
       data: { id },
-    } = await octokit.users.getByUsername({
+    } = await octokit.rest.users.getByUsername({
       username,
     });
     if (!config.allowPublicQuery && !(await checkUserAccess(context, username))) {
@@ -55,13 +54,13 @@ User information for ${username} was not found.
         body.push(`| Access | \`\`\`${Array.isArray(access.labels) ? access.labels.join(", ") : JSON.stringify(access.labels, null, 2)}\`\`\` |`);
       }
     }
-    await octokit.issues.createComment({
+    await octokit.rest.issues.createComment({
       body: body.join("\n"),
       owner: payload.repository.owner.login,
       repo: payload.repository.name,
       issue_number: payload.issue.number,
     });
   } catch (e) {
-    await context.logger.fatal(`Could not query user ${username}.`, e);
+    throw context.logger.fatal(`Could not query user ${username}.`, { e });
   }
 }

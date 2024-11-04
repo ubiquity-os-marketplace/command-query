@@ -1,17 +1,17 @@
 import { Command, InvalidArgumentError } from "commander";
 import packageJson from "../../package.json";
-import { Context } from "../types/context";
+import { CommandContext } from "../types/context";
 import { queryUser } from "./query-user";
 
 export class CommandParser {
   readonly _program;
 
-  constructor(context: Context) {
+  constructor(context: CommandContext) {
     const program = new Command();
     program
       .command("/query")
       .usage("@<username>")
-      .argument("<username>", "User name to query, e.g. @ubiquibot", this._parseUser)
+      .argument("<username>", "User name to query, e.g. @UbiquityOS", this._parseUser)
       .action((username) => queryUser(context, username))
       .helpCommand(false)
       .exitOverride()
