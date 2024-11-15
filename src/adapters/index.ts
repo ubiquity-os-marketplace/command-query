@@ -1,8 +1,8 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import { Context } from "@ubiquity-os/ubiquity-os-kernel";
+import { Context } from "../types/context";
 import { Database } from "../types/database";
 
-export function createAdapters(supabaseClient: SupabaseClient<Database>, context: Context) {
+export function createAdapters(supabaseClient: SupabaseClient<Database>, context: Omit<Context, "adapters">) {
   return {
     supabase: {
       access: {

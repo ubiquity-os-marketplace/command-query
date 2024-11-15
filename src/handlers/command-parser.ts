@@ -1,12 +1,12 @@
 import { Command, InvalidArgumentError } from "commander";
 import packageJson from "../../package.json";
-import { CommandContext } from "../types/context";
+import { Context } from "../types/context";
 import { queryUser } from "./query-user";
 
 export class CommandParser {
   readonly _program;
 
-  constructor(context: CommandContext) {
+  constructor(context: Context) {
     const program = new Command();
     program
       .command("/query")

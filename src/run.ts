@@ -1,9 +1,14 @@
 import { CommanderError } from "commander";
 import { CommandParser } from "./handlers/command-parser";
-import { CommandContext } from "./types/context";
+import { Context } from "./types/context";
+import { queryUser } from "./handlers/query-user";
 
-export async function run(context: CommandContext) {
-  const { octokit, logger, eventName, payload } = context;
+export async function run(context: Context) {
+  const { octokit, logger, eventName, payload, command } = context;
+  if (command) {
+    await queryUser(context, command.parameters.username);
+    return;
+  }
   if (eventName !== "issue_comment.created") {
     logger.info(`Unsupported event ${eventName}, skipping.`);
     return;

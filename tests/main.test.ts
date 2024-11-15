@@ -5,7 +5,7 @@ import { createClient } from "@supabase/supabase-js";
 import { Logs } from "@ubiquity-os/ubiquity-os-logger";
 import { createAdapters } from "../src/adapters";
 import { run } from "../src/run";
-import { CommandContext } from "../src/types/context";
+import { Context } from "../src/types/context";
 import { Database } from "../src/types/database";
 import { db } from "./__mocks__/db";
 import { server } from "./__mocks__/node";
@@ -81,7 +81,7 @@ describe("User tests", () => {
         SUPABASE_KEY: "",
       },
       octokit: new Octokit(),
-    } as unknown as CommandContext;
+    } as unknown as Context;
     context.adapters = createAdapters(createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY), context);
     await expect(run(context)).resolves.not.toThrow();
   });
@@ -108,7 +108,7 @@ describe("User tests", () => {
           SUPABASE_KEY: "",
         },
         octokit: new Octokit(),
-      } as unknown as CommandContext)
+      } as unknown as Context)
     ).resolves.not.toThrow();
   });
 
@@ -134,7 +134,7 @@ describe("User tests", () => {
           SUPABASE_KEY: "",
         },
         octokit: new Octokit(),
-      } as unknown as CommandContext)
+      } as unknown as Context)
     ).resolves.not.toThrow();
   });
 });

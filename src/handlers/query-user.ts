@@ -1,6 +1,6 @@
-import { CommandContext } from "../types/context";
+import { Context } from "../types/context";
 
-async function checkUserAccess(context: CommandContext, username: string) {
+async function checkUserAccess(context: Context, username: string) {
   const { octokit, payload } = context;
   if (!payload.comment.user?.login) {
     throw new Error("Missing User Login from payload, cannot check for collaborator status.");
@@ -20,7 +20,7 @@ async function checkUserAccess(context: CommandContext, username: string) {
   return true;
 }
 
-export async function queryUser(context: CommandContext, username: string) {
+export async function queryUser(context: Context, username: string) {
   const {
     octokit,
     payload,
