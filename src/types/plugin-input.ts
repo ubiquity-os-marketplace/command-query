@@ -4,7 +4,7 @@ export const pluginSettingsSchema = T.Object({
   /**
    * Allows any user to query anyone else. If false, only org members can query others.
    */
-  allowPublicQuery: T.Optional(T.Boolean({ default: true })),
+  allowPublicQuery: T.Optional(T.Boolean({ default: true, description: "Allows any user to query anyone else. If false, only org members can query others." })),
 });
 
 export type PluginSettings = StaticDecode<typeof pluginSettingsSchema>;
