@@ -9,6 +9,7 @@ import { Database } from "./types/database";
 import { Env, envSchema } from "./types/env";
 import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 import { Command } from "./types/command";
+import { Manifest } from "@ubiquity-os/plugin-sdk/manifest";
 
 export default {
   async fetch(request: Request, env: Env, executionContext: ExecutionContext) {
@@ -17,8 +18,7 @@ export default {
         const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);
         return run({ ...context, adapters: createAdapters(supabase, context) });
       },
-      // @ts-expect-error strings cannot be assigned to events
-      manifest,
+      manifest as Manifest,
       { kernelPublicKey: env.KERNEL_PUBLIC_KEY, settingsSchema: pluginSettingsSchema, envSchema: envSchema }
     ).fetch(request, env, executionContext);
   },

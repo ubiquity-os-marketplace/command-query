@@ -20,7 +20,7 @@
     "prepare": "husky install",
     "supabase:generate:local": "supabase gen types typescript --local > src/types/database.ts",
     "supabase:generate:remote": "cross-env-shell \"supabase gen types typescript --project-id $SUPABASE_PROJECT_ID --schema public > src/types/database.ts\"",
-    "test": "jest --setupFiles dotenv/config --coverage"
+    "test": "cross-env NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest --setupFiles dotenv/config --coverage"
   },
   "keywords": [
     "typescript",
@@ -31,7 +31,7 @@
   ],
   "dependencies": {
     "@octokit/rest": "^20.1.0",
-    "@sinclair/typebox": "^0.33.21",
+    "@sinclair/typebox": "0.34.3",
     "@supabase/supabase-js": "2.43.2",
     "@ubiquity-os/plugin-sdk": "^1.0.11",
     "@ubiquity-os/ubiquity-os-logger": "^1.3.2",

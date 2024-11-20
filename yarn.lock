@@ -1808,6 +1808,11 @@
   resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.1.1.tgz#1ec17e2edbec25c8306d424ecfbf13c7de1aaa31"
   integrity sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==
 
+"@sinclair/typebox@0.34.3":
+  version "0.34.3"
+  resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.34.3.tgz#530e4a1a1b45985576312f2a3f4a45c6100044b0"
+  integrity sha512-fEgncmnqn6WGibPn34deH5PwmMTuNCZ2clwlwevgFn8rP0l38zzWRg3KVYhoOZwkZ2Ew3yhZ/STdGDuMig66oQ==
+
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
