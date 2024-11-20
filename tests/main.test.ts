@@ -1,4 +1,4 @@
-import { afterAll, afterEach, beforeAll, beforeEach, describe, it } from "@jest/globals";
+import { afterAll, afterEach, beforeAll, beforeEach, describe, it, jest } from "@jest/globals";
 import { drop } from "@mswjs/data";
 import { Octokit } from "@octokit/rest";
 import { createClient } from "@supabase/supabase-js";
