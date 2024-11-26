@@ -22,6 +22,7 @@
     "properties": {
       "allowPublicQuery": {
         "default": true,
+        "description": "Allows any user to query anyone else. If false, only org members can query others.",
         "type": "boolean"
       }
     }
