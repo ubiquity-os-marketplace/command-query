@@ -1,10 +1,11 @@
-import { Context } from "@ubiquity-os/ubiquity-os-kernel";
+import { Context as PluginContext } from "@ubiquity-os/plugin-sdk";
 import { createAdapters } from "../adapters";
 import { Env } from "./env";
 import { PluginSettings } from "./plugin-input";
+import { Command } from "./command";
 
 export type SupportedEvents = "issue_comment.created";
 
-export type CommandContext = Context<PluginSettings, Env, SupportedEvents> & {
+export type Context = PluginContext<PluginSettings, Env, Command, SupportedEvents> & {
   adapters: ReturnType<typeof createAdapters>;
 };
