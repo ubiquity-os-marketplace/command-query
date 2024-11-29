@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.1.0...v1.2.0) (2024-11-29)
+
+
+### Features
+
+* command interface ([ffbb00b](https://github.com/ubiquity-os-marketplace/command-query/commit/ffbb00b3fa350c7edeebc922ac270ac1ea0b4553))
+* manifest commands object ([c2d4761](https://github.com/ubiquity-os-marketplace/command-query/commit/c2d476199f5e4d49c62ce01aa8e08e50ff5e7968))
+* switch to Bun ([75896fb](https://github.com/ubiquity-os-marketplace/command-query/commit/75896fbeea121edba53d3b82a1bc428d7d46b8e0))
+
+
+### Bug Fixes
+
+* change tests to CJS ([b2f214b](https://github.com/ubiquity-os-marketplace/command-query/commit/b2f214ba9bc37f2d367443a5dfc00ff645c02592))
+* formatting ([1562da1](https://github.com/ubiquity-os-marketplace/command-query/commit/1562da1f02ac52642b7bada8a917763c43bc9be7))
+* setup bun ([75a3a37](https://github.com/ubiquity-os-marketplace/command-query/commit/75a3a37d533e6ea64bd0bd4b8f33165b5cecd9e7))
+* upgrade Typebox and cross-env ([f6ca42a](https://github.com/ubiquity-os-marketplace/command-query/commit/f6ca42a0bca8db7eba41d8720999dadb7f455bf0))
+
 ## [1.1.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.0.0...v1.1.0) (2024-11-04)
 
 
