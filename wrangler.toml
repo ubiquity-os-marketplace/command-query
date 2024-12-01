@@ -1,4 +1,4 @@
-name = "command-query-user"
+name = "ubiquity-os-command-query-user"
 main = "src/index.ts"
 compatibility_date = "2024-09-24"
 compatibility_flags = [ "nodejs_compat" ]
