@@ -1,4 +1,4 @@
-import { Context as PluginContext } from "@ubq-meniole/plugin-sdk";
+import { Context as PluginContext } from "@ubq-mentlegen/plugin-sdk";
 import { createAdapters } from "../adapters";
 import { Env } from "./env";
 import { PluginSettings } from "./plugin-input";
