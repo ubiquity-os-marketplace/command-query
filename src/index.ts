@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { createPlugin } from "@ubiquity-os/plugin-sdk";
+import { createPlugin } from "@ubq-meniole/plugin-sdk";
 import { ExecutionContext } from "hono";
 import manifest from "../manifest.json";
 import { createAdapters } from "./adapters";
@@ -9,7 +9,7 @@ import { Database } from "./types/database";
 import { Env, envSchema } from "./types/env";
 import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 import { Command } from "./types/command";
-import { Manifest } from "@ubiquity-os/plugin-sdk/manifest";
+import { Manifest } from "@ubq-meniole/plugin-sdk/manifest";
 
 export default {
   async fetch(request: Request, env: Env, executionContext: ExecutionContext) {
