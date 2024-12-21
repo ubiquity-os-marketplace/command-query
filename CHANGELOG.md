@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.2.0...v1.2.1) (2024-12-21)
+
+
+### Bug Fixes
+
+* update wrangler.toml ([de774d8](https://github.com/ubiquity-os-marketplace/command-query/commit/de774d8d0d6041801ea93656c59cda5ac0e2564d))
+
 ## [1.2.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.1.0...v1.2.0) (2024-11-29)
 
 
