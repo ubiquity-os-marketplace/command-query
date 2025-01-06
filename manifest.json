@@ -5,7 +5,16 @@
   "commands": {
     "query": {
       "ubiquity:example": "/query @UbiquityOS",
-      "description": "Returns the user's wallet, access, and multiplier information."
+      "description": "Returns the user's wallet, access, and multiplier information.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "description": "Github username",
+            "type": "string"
+          }
+        }
+      }
     }
   },
   "configuration": {
@@ -17,5 +26,6 @@
         "type": "boolean"
       }
     }
-  }
+  },
+  "homepage_url": "https://ubiquity-os-command-query-user-development.ubiquity.workers.dev"
 }

@@ -1,4 +1,4 @@
-name: "Update Configuration"
+name: "Update Configuration and Build"
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   update:
-    name: "Update Configuration in manifest.json"
+    name: "Update Configuration & Build"
     runs-on: ubuntu-latest
     permissions: write-all
 
