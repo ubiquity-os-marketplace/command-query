@@ -1,10 +1,11 @@
+import { postComment } from "@ubiquity-os/plugin-sdk";
 import { CommanderError } from "commander";
 import { CommandParser } from "./handlers/command-parser";
 import { Context } from "./types/context";
 import { queryUser } from "./handlers/query-user";
 
 export async function run(context: Context) {
-  const { octokit, logger, eventName, payload, command } = context;
+  const { logger, eventName, payload, command } = context;
   if (command) {
     await queryUser(context, command.parameters.username);
     return;
@@ -20,21 +21,21 @@ export async function run(context: Context) {
   } catch (e) {
     if (e instanceof CommanderError) {
       if (e.code !== "commander.unknownCommand") {
-        context.logger.fatal("Commander error", { e });
-        await octokit.rest.issues.createComment({
-          body: `\`\`\`
+        await postComment(
+          context,
+          context.logger.error(
+            `\`\`\`
 Failed to run command-query-user.
 ${e.message}
 
 ${commandParser.helpInformation()}
 \`\`\``,
-          owner: context.payload.repository.owner.login,
-          repo: context.payload.repository.name,
-          issue_number: context.payload.issue.number,
-        });
+            { e }
+          )
+        );
       }
     } else {
-      context.logger.error("error", { e });
+      context.logger.fatal("error", { e });
       throw e;
     }
   }
