@@ -1,7 +1,6 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, it, jest } from "@jest/globals";
 import { drop } from "@mswjs/data";
 import { Octokit } from "@octokit/rest";
-import { createClient } from "@supabase/supabase-js";
 import { Logs } from "@ubiquity-os/ubiquity-os-logger";
 import { createAdapters } from "../src/adapters";
 import { run } from "../src/run";
@@ -16,7 +15,7 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-jest.mock("@supabase/supabase-js", () => {
+jest.unstable_mockModule("@supabase/supabase-js", () => {
   return {
     createClient: jest.fn(() => {
       return {
@@ -83,6 +82,7 @@ describe("User tests", () => {
       },
       octokit: new Octokit(),
     } as unknown as Context;
+    const { createClient } = await import("@supabase/supabase-js");
     context.adapters = createAdapters(createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY), context);
     await expect(run(context)).resolves.not.toThrow();
   });
