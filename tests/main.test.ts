@@ -24,6 +24,7 @@ jest.mock("@supabase/supabase-js", () => {
           return {
             select: jest.fn(() => {
               return {
+                // eslint-disable-next-line sonarjs/no-nested-functions
                 eq: jest.fn(() => {
                   return {
                     single: jest.fn(() => {
