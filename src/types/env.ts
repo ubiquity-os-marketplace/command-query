@@ -6,7 +6,6 @@ export const envSchema = T.Object({
   SUPABASE_KEY: T.String(),
   KERNEL_PUBLIC_KEY: T.Optional(T.String()),
   LOG_LEVEL: T.Enum(LOG_LEVEL, { default: LOG_LEVEL.INFO }),
-  CLOUDFLARE_ACCOUNT_ID: T.Optional(T.String()),
   CLOUDFLARE_WORKER_NAME: T.Optional(T.String()),
 });
 
