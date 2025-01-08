@@ -1,4 +1,4 @@
-name: Delete Deployment
+name: Delete Worker
 
 on:
   delete:
