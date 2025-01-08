@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.2.0...v1.2.1) (2025-01-08)
+
+
+### Bug Fixes
+
+* replace comment post with SDK function ([3fcb7e7](https://github.com/ubiquity-os-marketplace/command-query/commit/3fcb7e705a5b5b169bf00a11320745d077a611ac))
+* update wrangler.toml ([de774d8](https://github.com/ubiquity-os-marketplace/command-query/commit/de774d8d0d6041801ea93656c59cda5ac0e2564d))
+
 ## [1.2.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.1.0...v1.2.0) (2024-11-29)
 
 
