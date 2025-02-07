@@ -5,6 +5,7 @@ This package helps users querying their information, from they wallet address, l
 ## Technical Architecture
 
 ### Core Components
+
 - **GitHub Bot Integration**: Built as a Cloudflare Worker that processes GitHub comment webhooks
 - **Supabase Database**: Stores user-related data including:
   - Wallet addresses
@@ -14,6 +15,7 @@ This package helps users querying their information, from they wallet address, l
 - **Type Safety**: Comprehensive TypeScript implementation with runtime type validation using TypeBox
 
 ### Key Technologies
+
 - **Runtime**: Cloudflare Workers (Edge Computing Platform)
 - **Database**: Supabase (PostgreSQL)
 - **Framework**: Hono (Lightweight web framework)
@@ -22,6 +24,7 @@ This package helps users querying their information, from they wallet address, l
 - **GitHub Integration**: @octokit/rest for GitHub API interactions
 
 ### Command Processing Flow
+
 1. Webhook receives GitHub comment event
 2. Command parser validates the syntax (/query @user)
 3. Access control check (if enabled)
@@ -37,9 +40,10 @@ The following commands are allowed:
 ```
 
 Response Format:
+
 ```markdown
 | Property | Value |
-|----------|-------|
+| -------- | ----- |
 | Wallet   | 0x... |
 | Access   | [...] |
 ```
@@ -97,6 +101,7 @@ A valid configuration can be like:
 ```
 
 ### Configuration Options
+
 - `allowPublicQuery`: Enable/disable public user queries
 - `logLevel`: Set logging verbosity (INFO, ERROR, etc.)
 
@@ -111,6 +116,7 @@ yarn test
 ```
 
 ### Development Requirements
+
 - Node.js >=20.10.0
 - Yarn package manager
 - Supabase CLI (for local development)
