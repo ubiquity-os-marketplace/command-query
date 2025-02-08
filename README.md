@@ -10,7 +10,6 @@ This package helps users querying their information, from they wallet address, l
 - **Supabase Database**: Stores user-related data including:
   - Wallet addresses
   - Access control labels
-  - User permissions
 - **Access Control**: Supports both public queries and repository collaborator-only queries
 - **Type Safety**: Comprehensive TypeScript implementation with runtime type validation using TypeBox
 
@@ -55,13 +54,13 @@ Response Format:
 You can run the type generations against a local database with
 
 ```shell
-yarn supabase:generate:local
+bun supabase:generate:local
 ```
 
 Or against an instance by setting the `SUPABASE_ACCESS_TOKEN` and `SUPABASE_PROJECT_ID` in your `.env` file
 
 ```shell
-yarn prebuild
+bun prebuild
 ```
 
 ### Worker
@@ -69,7 +68,7 @@ yarn prebuild
 Start the Worker by running
 
 ```shell
-yarn dev
+bun dev
 ```
 
 ### Make requests
@@ -91,15 +90,6 @@ For convenience, you can find an `.http` file with a valid request [here](/tests
 
 ## Configuration
 
-A valid configuration can be like:
-
-```yaml
-- plugin: https://os.ubq.fi/command-query
-  with:
-    allowPublicQuery: true
-    logLevel: INFO
-```
-
 ### Configuration Options
 
 - `allowPublicQuery`: Enable/disable public user queries
@@ -112,11 +102,10 @@ A valid configuration can be like:
 To start Jest tests, run
 
 ```shell
-yarn test
+bun test
 ```
 
 ### Development Requirements
 
-- Node.js >=20.10.0
-- Yarn package manager
+- Bun runtime
 - Supabase CLI (for local development)
