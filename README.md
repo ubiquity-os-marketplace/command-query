@@ -9,7 +9,6 @@ This package helps users querying their information, from their wallet address o
 - **GitHub Bot Integration**: Built as a Cloudflare Worker that processes GitHub comment webhooks
 - **Supabase Database**: Stores user-related data including:
   - Wallet addresses
-  - Access control labels
 - **Access Control**: Supports both public queries and repository collaborator-only queries
 - **Type Safety**: Comprehensive TypeScript implementation with runtime type validation using TypeBox
 
