@@ -1,6 +1,6 @@
 # `@ubiquity-os-marketplace/command-query-user`
 
-This package helps users querying their information, from they wallet address, label access control or current XP.
+This package helps users querying their information, from their wallet address or current XP.
 
 ## Technical Architecture
 
@@ -54,13 +54,13 @@ Response Format:
 You can run the type generations against a local database with
 
 ```shell
-bun supabase:generate:local
+bun run supabase:generate:local
 ```
 
 Or against an instance by setting the `SUPABASE_ACCESS_TOKEN` and `SUPABASE_PROJECT_ID` in your `.env` file
 
 ```shell
-bun prebuild
+bun run prebuild
 ```
 
 ### Worker
@@ -68,7 +68,7 @@ bun prebuild
 Start the Worker by running
 
 ```shell
-bun dev
+bun run dev
 ```
 
 ### Make requests
@@ -102,7 +102,7 @@ For convenience, you can find an `.http` file with a valid request [here](/tests
 To start Jest tests, run
 
 ```shell
-bun test
+bun run test
 ```
 
 ### Development Requirements
