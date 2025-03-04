@@ -19,7 +19,7 @@ on:
         description: "Signature tp identify the Kernel"
       command:
         description: "Command"
-        required: true
+        required: false
 
 jobs:
   compute:
