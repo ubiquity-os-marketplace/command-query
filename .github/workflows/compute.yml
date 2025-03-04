@@ -19,6 +19,7 @@ on:
         description: "Signature tp identify the Kernel"
       command:
         description: "Command"
+        required: true
 
 jobs:
   compute:
@@ -26,11 +27,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     environment: ${{ github.ref == 'refs/heads/main' && 'main' || 'development' }}
-    env:
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      KERNEL_PUBLIC_KEY: ${{ secrets.KERNEL_PUBLIC_KEY }}
 
     steps:
       - uses: actions/checkout@v4
