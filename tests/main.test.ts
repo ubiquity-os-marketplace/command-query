@@ -81,6 +81,9 @@ describe("User tests", () => {
         SUPABASE_KEY: "",
       },
       octokit: new Octokit(),
+      commentHandler: {
+        postComment: jest.fn(),
+      },
     } as unknown as Context;
     const { createClient } = await import("@supabase/supabase-js");
     context.adapters = createAdapters(createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY), context);
@@ -109,6 +112,9 @@ describe("User tests", () => {
           SUPABASE_KEY: "",
         },
         octokit: new Octokit(),
+        commentHandler: {
+          postComment: jest.fn(),
+        },
       } as unknown as Context)
     ).resolves.not.toThrow();
   });
@@ -135,6 +141,9 @@ describe("User tests", () => {
           SUPABASE_KEY: "",
         },
         octokit: new Octokit(),
+        commentHandler: {
+          postComment: jest.fn(),
+        },
       } as unknown as Context)
     ).resolves.not.toThrow();
   });
