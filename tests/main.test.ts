@@ -2,7 +2,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, it, jest } from "
 import { drop } from "@mswjs/data";
 import { Octokit } from "@octokit/rest";
 import { Logs } from "@ubiquity-os/ubiquity-os-logger";
-import { createAdapters } from "../src/adapters";
+import { createAdapters } from "../src/adapters/index";
 import { run } from "../src/run";
 import { Context } from "../src/types/context";
 import { Database } from "../src/types/database";

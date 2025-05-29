@@ -3,7 +3,7 @@ import { createPlugin } from "@ubiquity-os/plugin-sdk";
 import { Manifest } from "@ubiquity-os/plugin-sdk/manifest";
 import { ExecutionContext } from "hono";
 import manifest from "../manifest.json";
-import { createAdapters } from "./adapters";
+import { createAdapters } from "./adapters/index";
 import { run } from "./run";
 import { Command } from "./types/command";
 import { SupportedEvents } from "./types/context";

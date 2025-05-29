@@ -1,5 +1,5 @@
 import { Context as PluginContext } from "@ubiquity-os/plugin-sdk";
-import { createAdapters } from "../adapters";
+import { createAdapters } from "../adapters/index";
 import { Env } from "./env";
 import { PluginSettings } from "./plugin-input";
 import { Command } from "./command";
