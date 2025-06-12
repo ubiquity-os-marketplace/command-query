@@ -2,7 +2,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, it, jest } from "
 import { drop } from "@mswjs/data";
 import { Octokit } from "@octokit/rest";
 import { Logs } from "@ubiquity-os/ubiquity-os-logger";
-import { createAdapters } from "../src/adapters";
+import { createAdapters } from "../src/adapters/index";
 import { run } from "../src/run";
 import { Context } from "../src/types/context";
 import { Database } from "../src/types/database";
@@ -81,6 +81,9 @@ describe("User tests", () => {
         SUPABASE_KEY: "",
       },
       octokit: new Octokit(),
+      commentHandler: {
+        postComment: jest.fn(),
+      },
     } as unknown as Context;
     const { createClient } = await import("@supabase/supabase-js");
     context.adapters = createAdapters(createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY), context);
@@ -109,6 +112,9 @@ describe("User tests", () => {
           SUPABASE_KEY: "",
         },
         octokit: new Octokit(),
+        commentHandler: {
+          postComment: jest.fn(),
+        },
       } as unknown as Context)
     ).resolves.not.toThrow();
   });
@@ -135,6 +141,9 @@ describe("User tests", () => {
           SUPABASE_KEY: "",
         },
         octokit: new Octokit(),
+        commentHandler: {
+          postComment: jest.fn(),
+        },
       } as unknown as Context)
     ).resolves.not.toThrow();
   });

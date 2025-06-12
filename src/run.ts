@@ -1,11 +1,10 @@
-import { postComment } from "@ubiquity-os/plugin-sdk";
 import { CommanderError } from "commander";
 import { CommandParser } from "./handlers/command-parser";
 import { Context } from "./types/context";
 import { queryUser } from "./handlers/query-user";
 
 export async function run(context: Context) {
-  const { logger, eventName, payload, command } = context;
+  const { logger, eventName, payload, command, commentHandler } = context;
   if (command) {
     await queryUser(context, command.parameters.username);
     return;
@@ -21,7 +20,7 @@ export async function run(context: Context) {
   } catch (e) {
     if (e instanceof CommanderError) {
       if (e.code !== "commander.unknownCommand") {
-        await postComment(
+        await commentHandler.postComment(
           context,
           context.logger.error(
             `\`\`\`
