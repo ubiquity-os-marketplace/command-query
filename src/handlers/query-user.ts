@@ -1,4 +1,3 @@
-import { postComment } from "@ubiquity-os/plugin-sdk";
 import { Context } from "../types/context";
 
 async function checkUserAccess(context: Context, username: string) {
@@ -26,6 +25,7 @@ export async function queryUser(context: Context, username: string) {
     octokit,
     adapters: { supabase },
     config,
+    commentHandler,
   } = context;
   const body: string[] = [];
   try {
@@ -54,7 +54,7 @@ User information for ${username} was not found.
         body.push(`| Access | \`\`\`${Array.isArray(access.labels) ? access.labels.join(", ") : JSON.stringify(access.labels, null, 2)}\`\`\` |`);
       }
     }
-    await postComment(context, context.logger.info(body.join("\n")), { raw: true, updateComment: true });
+    await commentHandler.postComment(context, context.logger.info(body.join("\n")), { raw: true, updateComment: true });
   } catch (e) {
     throw context.logger.fatal(`Could not query user ${username}.`, { e });
   }

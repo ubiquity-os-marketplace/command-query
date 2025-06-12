@@ -1,6 +1,33 @@
 # `@ubiquity-os-marketplace/command-query-user`
 
-This package helps users querying their information, from they wallet address, label access control or current XP.
+This package helps users querying their information, from their wallet address or current XP.
+
+## Technical Architecture
+
+### Core Components
+
+- **GitHub Bot Integration**: Built as a Cloudflare Worker that processes GitHub comment webhooks
+- **Supabase Database**: Stores user-related data including:
+  - Wallet addresses
+- **Access Control**: Supports both public queries and repository collaborator-only queries
+- **Type Safety**: Comprehensive TypeScript implementation with runtime type validation using TypeBox
+
+### Key Technologies
+
+- **Runtime**: Cloudflare Workers (Edge Computing Platform)
+- **Database**: Supabase (PostgreSQL)
+- **Framework**: Hono (Lightweight web framework)
+- **SDK**: @ubiquity-os/plugin-sdk for standardized plugin development
+- **Type Validation**: @sinclair/typebox for runtime type checking
+- **GitHub Integration**: @octokit/rest for GitHub API interactions
+
+### Command Processing Flow
+
+1. Webhook receives GitHub comment event
+2. Command parser validates the syntax (/query @user)
+3. Access control check (if enabled)
+4. User data retrieval from Supabase
+5. Response formatting and posting as GitHub comment
 
 ## Usage
 
@@ -10,6 +37,15 @@ The following commands are allowed:
 /query @user
 ```
 
+Response Format:
+
+```markdown
+| Property | Value |
+| -------- | ----- |
+| Wallet   | 0x... |
+| Access   | [...] |
+```
+
 ## Running locally
 
 ### Supabase types
@@ -17,13 +53,13 @@ The following commands are allowed:
 You can run the type generations against a local database with
 
 ```shell
-yarn supabase:generate:local
+bun run supabase:generate:local
 ```
 
 Or against an instance by setting the `SUPABASE_ACCESS_TOKEN` and `SUPABASE_PROJECT_ID` in your `.env` file
 
 ```shell
-yarn prebuild
+bun run prebuild
 ```
 
 ### Worker
@@ -31,7 +67,7 @@ yarn prebuild
 Start the Worker by running
 
 ```shell
-yarn dev
+bun run dev
 ```
 
 ### Make requests
@@ -53,14 +89,10 @@ For convenience, you can find an `.http` file with a valid request [here](/tests
 
 ## Configuration
 
-A valid configuration can be like:
+### Configuration Options
 
-```yaml
-- plugin: https://os.ubq.fi/command-query
-  with:
-    allowPublicQuery: true
-    logLevel: INFO
-```
+- `allowPublicQuery`: Enable/disable public user queries
+- `logLevel`: Set logging verbosity (INFO, ERROR, etc.)
 
 ## Testing
 
@@ -69,5 +101,10 @@ A valid configuration can be like:
 To start Jest tests, run
 
 ```shell
-yarn test
+bun run test
 ```
+
+### Development Requirements
+
+- Bun runtime
+- Supabase CLI (for local development)
