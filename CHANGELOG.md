@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.4.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.3.0...v1.4.0) (2025-06-12)
+
+
+### Features
+
+* deno ([26270ca](https://github.com/ubiquity-os-marketplace/command-query/commit/26270ca891aadcb9a23a9b13cfabcd2a5e636cf6))
+* deno deployment ([80fe4a1](https://github.com/ubiquity-os-marketplace/command-query/commit/80fe4a141e9471c7a6899e461c3ab1b66cb42076))
+* used ubiquity's knip-reporter ([344d4d8](https://github.com/ubiquity-os-marketplace/command-query/commit/344d4d864e99d5df9e9e3d8b8580e8a0486fa120))
+* used ubiquity's knip-reporter ([5d1f34e](https://github.com/ubiquity-os-marketplace/command-query/commit/5d1f34e8541bb0b3ee974c9162fe721e001ba01a))
+
+
+### Bug Fixes
+
+* add compute.yml ([6286a23](https://github.com/ubiquity-os-marketplace/command-query/commit/6286a23cd9a0127e5634be6cf8763ceac3261558))
+* compute.yml ([a09b7eb](https://github.com/ubiquity-os-marketplace/command-query/commit/a09b7ebd3093bef8769b90712992c23030210a35))
+* compute.yml ([62c82c5](https://github.com/ubiquity-os-marketplace/command-query/commit/62c82c56dbe2978cb0078f6965c9758ee2a4d1c5))
+* update the manifest.json with example ([44be37b](https://github.com/ubiquity-os-marketplace/command-query/commit/44be37b5c279eabadfc6b66e94a7fd1ef10986a4))
+
 ## [1.3.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.2.2...v1.3.0) (2025-01-25)
 
 
