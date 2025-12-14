@@ -13,9 +13,9 @@
 
 ### Bug Fixes
 
-* add compute.yml ([6286a23](https://github.com/ubiquity-os-marketplace/command-query/commit/6286a23cd9a0127e5634be6cf8763ceac3261558))
-* compute.yml ([a09b7eb](https://github.com/ubiquity-os-marketplace/command-query/commit/a09b7ebd3093bef8769b90712992c23030210a35))
-* compute.yml ([62c82c5](https://github.com/ubiquity-os-marketplace/command-query/commit/62c82c56dbe2978cb0078f6965c9758ee2a4d1c5))
+* add action.yml ([6286a23](https://github.com/ubiquity-os-marketplace/command-query/commit/6286a23cd9a0127e5634be6cf8763ceac3261558))
+* action.yml ([a09b7eb](https://github.com/ubiquity-os-marketplace/command-query/commit/a09b7ebd3093bef8769b90712992c23030210a35))
+* action.yml ([62c82c5](https://github.com/ubiquity-os-marketplace/command-query/commit/62c82c56dbe2978cb0078f6965c9758ee2a4d1c5))
 * update the manifest.json with example ([44be37b](https://github.com/ubiquity-os-marketplace/command-query/commit/44be37b5c279eabadfc6b66e94a7fd1ef10986a4))
 
 ## [1.3.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.2.2...v1.3.0) (2025-01-25)
