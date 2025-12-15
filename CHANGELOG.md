@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.4.0...v1.5.0) (2025-12-15)
+
+
+### Features
+
+* migrate to action.yml entry point ([296c5df](https://github.com/ubiquity-os-marketplace/command-query/commit/296c5dff5065f62e3124dfd765f059152138c6d4))
+
+
+### Bug Fixes
+
+* correct entries in changelog for action.yml ([d44e01f](https://github.com/ubiquity-os-marketplace/command-query/commit/d44e01fd68a6df3e9dc073d6b3285e09bb0cf13f))
+* release please issue permission ([cfb5f19](https://github.com/ubiquity-os-marketplace/command-query/commit/cfb5f19d12865833194205ad731fca7cc10d7030))
+* release please issue permission ([7d8c544](https://github.com/ubiquity-os-marketplace/command-query/commit/7d8c54484ece020d2037f8971f2e32a8f3658fa7))
+* set environment main for main branch and tags ([1d0248d](https://github.com/ubiquity-os-marketplace/command-query/commit/1d0248d5cca1709254c4667e8a971e878f3831e3))
+* set environment main for main branch and tags ([f0e4741](https://github.com/ubiquity-os-marketplace/command-query/commit/f0e474115c1e1392fecc6084fc95b0f8306f89d6))
+
 ## [1.4.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.3.0...v1.4.0) (2025-06-12)
 
 
@@ -13,9 +29,9 @@
 
 ### Bug Fixes
 
-* add compute.yml ([6286a23](https://github.com/ubiquity-os-marketplace/command-query/commit/6286a23cd9a0127e5634be6cf8763ceac3261558))
-* compute.yml ([a09b7eb](https://github.com/ubiquity-os-marketplace/command-query/commit/a09b7ebd3093bef8769b90712992c23030210a35))
-* compute.yml ([62c82c5](https://github.com/ubiquity-os-marketplace/command-query/commit/62c82c56dbe2978cb0078f6965c9758ee2a4d1c5))
+* add action.yml ([6286a23](https://github.com/ubiquity-os-marketplace/command-query/commit/6286a23cd9a0127e5634be6cf8763ceac3261558))
+* action.yml ([a09b7eb](https://github.com/ubiquity-os-marketplace/command-query/commit/a09b7ebd3093bef8769b90712992c23030210a35))
+* action.yml ([62c82c5](https://github.com/ubiquity-os-marketplace/command-query/commit/62c82c56dbe2978cb0078f6965c9758ee2a4d1c5))
 * update the manifest.json with example ([44be37b](https://github.com/ubiquity-os-marketplace/command-query/commit/44be37b5c279eabadfc6b66e94a7fd1ef10986a4))
 
 ## [1.3.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.2.2...v1.3.0) (2025-01-25)
