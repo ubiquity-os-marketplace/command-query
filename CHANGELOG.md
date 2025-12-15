@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.4.0...v1.5.0) (2025-12-15)
+
+
+### Features
+
+* migrate to action.yml entry point ([296c5df](https://github.com/ubiquity-os-marketplace/command-query/commit/296c5dff5065f62e3124dfd765f059152138c6d4))
+
+
+### Bug Fixes
+
+* correct entries in changelog for action.yml ([d44e01f](https://github.com/ubiquity-os-marketplace/command-query/commit/d44e01fd68a6df3e9dc073d6b3285e09bb0cf13f))
+* release please issue permission ([cfb5f19](https://github.com/ubiquity-os-marketplace/command-query/commit/cfb5f19d12865833194205ad731fca7cc10d7030))
+* release please issue permission ([7d8c544](https://github.com/ubiquity-os-marketplace/command-query/commit/7d8c54484ece020d2037f8971f2e32a8f3658fa7))
+* set environment main for main branch and tags ([1d0248d](https://github.com/ubiquity-os-marketplace/command-query/commit/1d0248d5cca1709254c4667e8a971e878f3831e3))
+* set environment main for main branch and tags ([f0e4741](https://github.com/ubiquity-os-marketplace/command-query/commit/f0e474115c1e1392fecc6084fc95b0f8306f89d6))
+
 ## [1.4.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.3.0...v1.4.0) (2025-06-12)
 
 
