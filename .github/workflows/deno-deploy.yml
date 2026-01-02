@@ -15,14 +15,21 @@ jobs:
       id-token: write
 
     steps:
+      - uses: actions/checkout@v4
+      - uses: ubiquity-os/deno-plugin-adapter@main
+        id: adapter
+        with:
+          pluginEntry: "./index"
       - uses: ubiquity-os/deno-deploy@main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APP_ID: ${{ secrets.APP_ID }}
+          APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
           KERNEL_PUBLIC_KEY: ${{ secrets.KERNEL_PUBLIC_KEY }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
         with:
           token: ${{ secrets.DENO_DEPLOY_TOKEN }}
           action: ${{ github.event_name == 'delete' && 'delete' || 'deploy' }}
-          pluginEntry: "./index"
           organization: ${{ secrets.DENO_ORG_NAME }}
+          entrypoint: ${{ steps.adapter.outputs.entrypoint }}
+          project_name: ${{ secrets.DENO_PROJECT_NAME }}
