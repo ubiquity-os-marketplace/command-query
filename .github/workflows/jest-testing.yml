@@ -26,7 +26,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Jest With Coverage
-        run: bun run test
+        run: bun run jest:test
 
       - name: Add Jest Report to Summary
         if: always()
