@@ -1,35 +1,32 @@
-name: Deno Deploy
+name: Deploy (Deno Deploy)
 
 on:
-  workflow_dispatch:
   push:
-  delete:
+    branches: [development]
+  workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    name: Deploy
-    environment: ${{ (github.event.ref == 'refs/heads/main' || github.ref == 'refs/heads/main' || github.event.workflow_run.head_branch == 'main' || github.event.ref == 'refs/heads/demo' || github.ref == 'refs/heads/demo' || github.event.workflow_run.head_branch == 'demo') && 'main' || 'development' }}
-    permissions:
-      contents: write
-      id-token: write
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ubiquity-os/deno-plugin-adapter@main
-        id: adapter
-        with:
-          pluginEntry: "./index"
-      - uses: ubiquity-os/deno-deploy@main
-        env:
-          APP_ID: ${{ secrets.APP_ID }}
-          APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
-          KERNEL_PUBLIC_KEY: ${{ secrets.KERNEL_PUBLIC_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
-        with:
-          token: ${{ secrets.DENO_DEPLOY_TOKEN }}
-          action: ${{ github.event_name == 'delete' && 'delete' || 'deploy' }}
-          organization: ${{ secrets.DENO_ORG_NAME }}
-          entrypoint: ${{ steps.adapter.outputs.entrypoint }}
-          project_name: ${{ secrets.DENO_PROJECT_NAME }}
+    uses: ubiquity/deno-deploy-workflow/.github/workflows/deno-deploy-reusable.yml@main
+    secrets: inherit
+    with:
+      project: demo-ubq-fi
+      preview_project: demo-ubq-fi-preview
+      entrypoint: serve.ts
+      install_command: |
+        bun install
+      build_command: |
+        bun run build
+      build_env: |
+        SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+        SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+      bun_version: "1.1.x"
+      deno_version: 2.x
+      deployctl_version: "1.12.0"
+      prod_branch: development
+      include: |
+        static/**
+      exclude: |
+        node_modules
+        tests
+        cypress
