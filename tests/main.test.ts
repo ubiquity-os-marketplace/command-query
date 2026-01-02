@@ -15,7 +15,7 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-jest.unstable_mockModule("@supabase/supabase-js", () => {
+jest.mock("@supabase/supabase-js", () => {
   return {
     createClient: jest.fn(() => {
       return {
