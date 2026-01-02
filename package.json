@@ -33,7 +33,7 @@
     "@octokit/rest": "^20.1.0",
     "@sinclair/typebox": "0.34.41",
     "@supabase/supabase-js": "2.43.2",
-    "@ubiquity-os/plugin-sdk": "^3.8.1",
+    "@ubiquity-os/plugin-sdk": "^3.8.4",
     "@ubiquity-os/ubiquity-os-logger": "^1.4.0",
     "commander": "12.1.0",
     "hono": "^4.11.3"
