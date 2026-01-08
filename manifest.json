@@ -44,6 +44,5 @@
       }
     }
   },
-  "homepage_url": "https://command-query-codex-concur.deno.dev",
-  "short_name": "ubiquity-os-marketplace/command-query@development"
+  "homepage_url": "https://github.com/ubiquity-os-marketplace/command-query"
 }
