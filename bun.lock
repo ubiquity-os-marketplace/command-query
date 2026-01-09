@@ -11,6 +11,7 @@
         "@ubiquity-os/plugin-sdk": "^3.8.4",
         "@ubiquity-os/ubiquity-os-logger": "^1.4.0",
         "commander": "12.1.0",
+        "hono": "^4.11.3",
       },
       "devDependencies": {
         "@commitlint/cli": "^19.5.0",
