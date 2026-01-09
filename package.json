@@ -9,7 +9,7 @@
     "node": ">=20.10.0"
   },
   "scripts": {
-    "prebuild": "dotenv -- cross-env yarn supabase:generate:remote",
+    "prebuild": "dotenv -- bun run supabase:generate:remote",
     "dev": "wrangler dev --env dev --port 4003",
     "format": "run-s format:lint format:prettier format:cspell",
     "format:lint": "eslint --fix .",
@@ -31,12 +31,12 @@
   ],
   "dependencies": {
     "@octokit/rest": "^20.1.0",
-    "@sinclair/typebox": "0.34.3",
+    "@sinclair/typebox": "0.34.41",
     "@supabase/supabase-js": "2.43.2",
-    "@ubiquity-os/plugin-sdk": "^3.3.0",
+    "@ubiquity-os/plugin-sdk": "^3.8.4",
     "@ubiquity-os/ubiquity-os-logger": "^1.4.0",
     "commander": "12.1.0",
-    "hono": "^4.6.4"
+    "hono": "^4.11.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
@@ -88,5 +88,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  }
+  },
+  "packageManager": "bun@1"
 }
