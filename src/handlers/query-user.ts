@@ -54,7 +54,7 @@ User information for ${username} was not found.
         body.push(`| Access | \`\`\`${Array.isArray(access.labels) ? access.labels.join(", ") : JSON.stringify(access.labels, null, 2)}\`\`\` |`);
       }
     }
-    await commentHandler.postComment(context, context.logger.info(body.join("\n")), { raw: true, updateComment: true });
+    await commentHandler.postComment(context, context.logger.ok(body.join("\n")), { raw: true, updateComment: true });
   } catch (e) {
     throw context.logger.fatal(`Could not query user ${username}.`, { e });
   }

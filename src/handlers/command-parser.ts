@@ -23,7 +23,7 @@ export class CommandParser {
         context.logger.info(str);
       },
       writeErr(str: string) {
-        context.logger.error(str);
+        context.logger.warn(str);
       },
       getErrHelpWidth(): number {
         return 0;

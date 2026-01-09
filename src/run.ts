@@ -10,7 +10,7 @@ export async function run(context: Context) {
     return;
   }
   if (eventName !== "issue_comment.created") {
-    logger.info(`Unsupported event ${eventName}, skipping.`);
+    logger.debug(`Unsupported event ${eventName}, skipping.`);
     return;
   }
   const args = payload.comment.body.trim().split(/\s+/);
@@ -22,7 +22,7 @@ export async function run(context: Context) {
       if (e.code !== "commander.unknownCommand") {
         await commentHandler.postComment(
           context,
-          context.logger.error(
+          context.logger.warn(
             `\`\`\`
 Failed to run command-query-user.
 ${e.message}
