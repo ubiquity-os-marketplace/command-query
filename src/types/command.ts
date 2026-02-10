@@ -4,7 +4,7 @@ import { StaticDecode } from "@sinclair/typebox";
 export const commandSchema = T.Object({
   name: T.Literal("query", { description: "Returns the user's wallet, access, and multiplier information.", examples: ["/query @UbiquityOS"] }),
   parameters: T.Object({
-    username: T.String(),
+    username: T.String({ description: "GitHub username to query.", examples: ["@UbiquityOS"] }),
   }),
 });
 
