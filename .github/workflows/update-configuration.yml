@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: Meniole/action-deploy-plugin@feat/27-generate-manifest-metadata
+        with:
+          excludeSupportedEvents: "issue_comment.created"
         env:
           APP_ID: ${{ secrets.APP_ID }}
           APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
