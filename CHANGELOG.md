@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.4.1](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.4.0...v1.4.1) (2026-02-20)
+
+
+### Bug Fixes
+
+* accept kernel attestation inputs ([0038e4f](https://github.com/ubiquity-os-marketplace/command-query/commit/0038e4f41236d8163baed47de3f387a93037f993))
+* align command-query deps ([b35ef40](https://github.com/ubiquity-os-marketplace/command-query/commit/b35ef401f0c9b37a0e0d37147fa80b8a8cebf533))
+* align manifest workflow and command schema metadata ([a1faeaa](https://github.com/ubiquity-os-marketplace/command-query/commit/a1faeaa4ecbf1219d75040c90817c5075ee46de7))
+* align manifest workflow and command schema metadata ([0c5ee6f](https://github.com/ubiquity-os-marketplace/command-query/commit/0c5ee6f4e01e273837c78b5b8aa876d038bd6bac))
+* exclude issue_comment.created from manifest listeners ([f51bebe](https://github.com/ubiquity-os-marketplace/command-query/commit/f51bebe4877483c55618e950bd6df083cb055736))
+* exclude issue_comment.created from manifest listeners ([d547ad6](https://github.com/ubiquity-os-marketplace/command-query/commit/d547ad60c5bd7c5a2ec080cfe6ebf0f180c1389c))
+* normalize [@username](https://github.com/username) in structured command path ([4e46049](https://github.com/ubiquity-os-marketplace/command-query/commit/4e46049be46db6c57fa8030d3631298a7679c4a8))
+* release please issue permission ([cfb5f19](https://github.com/ubiquity-os-marketplace/command-query/commit/cfb5f19d12865833194205ad731fca7cc10d7030))
+* release please issue permission ([7d8c544](https://github.com/ubiquity-os-marketplace/command-query/commit/7d8c54484ece020d2037f8971f2e32a8f3658fa7))
+* set environment main for main branch and tags ([1d0248d](https://github.com/ubiquity-os-marketplace/command-query/commit/1d0248d5cca1709254c4667e8a971e878f3831e3))
+* set environment main for main branch and tags ([f0e4741](https://github.com/ubiquity-os-marketplace/command-query/commit/f0e474115c1e1392fecc6084fc95b0f8306f89d6))
+* sync manifest workflow metadata for issue 27 ([e3e6ffe](https://github.com/ubiquity-os-marketplace/command-query/commit/e3e6ffe9dae2245f5b51715f6d18d58ef80d195b))
+* sync workflow skipBotEvents and parameter metadata ([7ee5f57](https://github.com/ubiquity-os-marketplace/command-query/commit/7ee5f574fb3be0d5a6e96dfbedfaebfdb0bd70f2))
+* sync workflow skipBotEvents and parameter metadata ([313d7e1](https://github.com/ubiquity-os-marketplace/command-query/commit/313d7e1800f8d6d51c8e131741dad09dc714dd7e))
+
 ## [1.4.0](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.3.0...v1.4.0) (2025-06-12)
 
 
