@@ -12,7 +12,10 @@ import commentCreatedPayload from "./__mocks__/payloads/comment-created.json";
 import usersGet from "./__mocks__/users-get.json";
 
 beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  server.resetHandlers();
+  jest.restoreAllMocks();
+});
 afterAll(() => server.close());
 
 jest.unstable_mockModule("@supabase/supabase-js", () => {
@@ -88,6 +91,42 @@ describe("User tests", () => {
     const { createClient } = await import("@supabase/supabase-js");
     context.adapters = createAdapters(createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY), context);
     await expect(run(context)).resolves.not.toThrow();
+  });
+
+  it("Should strip @ from structured command username", async () => {
+    const octokit = new Octokit();
+    const getByUsernameSpy = jest.spyOn(octokit.rest.users, "getByUsername");
+
+    const context = {
+      eventName: event,
+      ref: "",
+      authToken: "",
+      stateId: "",
+      config: { allowPublicQuery: true },
+      payload: commentCreatedPayload,
+      command: {
+        name: "query",
+        parameters: {
+          username: "@UbiquityOS",
+        },
+      },
+      logger: new Logs("debug"),
+      adapters: {},
+      env: {
+        SUPABASE_URL: "",
+        SUPABASE_KEY: "",
+      },
+      octokit,
+      commentHandler: {
+        postComment: jest.fn(),
+      },
+    } as unknown as Context;
+
+    const { createClient } = await import("@supabase/supabase-js");
+    context.adapters = createAdapters(createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY), context);
+
+    await expect(run(context)).resolves.not.toThrow();
+    expect(getByUsernameSpy).toHaveBeenCalledWith({ username: "UbiquityOS" });
   });
 
   it("Should ignore invalid command", async () => {

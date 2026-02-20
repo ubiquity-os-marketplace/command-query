@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { createPlugin } from "@ubiquity-os/plugin-sdk";
 import { Manifest } from "@ubiquity-os/plugin-sdk/manifest";
-import { ExecutionContext } from "hono";
+import type { ExecutionContext } from "hono";
 import manifest from "../manifest.json";
 import { createAdapters } from "./adapters/index";
 import { run } from "./run";
@@ -12,7 +12,7 @@ import { Env, envSchema } from "./types/env";
 import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 
 export default {
-  async fetch(request: Request, env: Env, executionContext: ExecutionContext) {
+  async fetch(request: Request, env: Env, executionContext?: ExecutionContext) {
     return createPlugin<PluginSettings, Env, Command, SupportedEvents>(
       (context) => {
         const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);

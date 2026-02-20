@@ -20,6 +20,10 @@ async function checkUserAccess(context: Context, username: string) {
   return true;
 }
 
+function normalizeUsername(username: string) {
+  return username.startsWith("@") ? username.slice(1) : username;
+}
+
 export async function queryUser(context: Context, username: string) {
   const {
     octokit,
@@ -27,21 +31,22 @@ export async function queryUser(context: Context, username: string) {
     config,
     commentHandler,
   } = context;
+  const normalizedUsername = normalizeUsername(username);
   const body: string[] = [];
   try {
     const {
       data: { id },
     } = await octokit.rest.users.getByUsername({
-      username,
+      username: normalizedUsername,
     });
-    if (!config.allowPublicQuery && !(await checkUserAccess(context, username))) {
+    if (!config.allowPublicQuery && !(await checkUserAccess(context, normalizedUsername))) {
       return;
     }
     const access = await supabase.access.getAccess(id);
     const wallet = await supabase.wallet.getWallet(id);
     if (!access && !wallet) {
       body.push(`\`\`\`
-User information for ${username} was not found.
+User information for ${normalizedUsername} was not found.
 \`\`\``);
     } else {
       body.push(`
@@ -54,8 +59,8 @@ User information for ${username} was not found.
         body.push(`| Access | \`\`\`${Array.isArray(access.labels) ? access.labels.join(", ") : JSON.stringify(access.labels, null, 2)}\`\`\` |`);
       }
     }
-    await commentHandler.postComment(context, context.logger.info(body.join("\n")), { raw: true, updateComment: true });
+    await commentHandler.postComment(context, context.logger.ok(body.join("\n")), { raw: true, updateComment: true });
   } catch (e) {
-    throw context.logger.fatal(`Could not query user ${username}.`, { e });
+    throw context.logger.fatal(`Could not query user ${normalizedUsername}.`, { e });
   }
 }
