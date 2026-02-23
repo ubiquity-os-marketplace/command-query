@@ -1,8 +1,10 @@
 {
   "name": "@ubiquity-os/command-query",
-  "short_name": "ubiquity-os-marketplace/command-query@feat/320-workflow-artifact-migration",
+  "short_name": "local/command-query@local",
   "description": "Queries a user and retrieves its related information, such as the wallet, the label access control, or the current XP.",
-  "ubiquity:listeners": [],
+  "ubiquity:listeners": [
+    "issue_comment.created"
+  ],
   "skipBotEvents": true,
   "configuration": {
     "type": "object",
@@ -13,5 +15,6 @@
         "type": "boolean"
       }
     }
-  }
+  },
+  "homepage_url": "https://command-query-feat-320-wor.deno.dev"
 }
