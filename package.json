@@ -21,7 +21,7 @@
     "supabase:generate:local": "supabase gen types typescript --local > src/types/database.ts",
     "supabase:generate:remote": "cross-env-shell \"supabase gen types typescript --project-id $SUPABASE_PROJECT_ID --schema public > src/types/database.ts\"",
     "test": "cross-env NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" jest --setupFiles dotenv/config --coverage",
-    "prepare:manifest": "node ./scripts/prepare-manifest.mjs",
+    "prepare:manifest": "curl -fsSL https://raw.githubusercontent.com/ubiquity-os/action-deploy-plugin/main/.github/scripts/update-manifest.js | node - .",
     "predev": "bun run prepare:manifest"
   },
   "keywords": [
