@@ -15,5 +15,6 @@
         "type": "boolean"
       }
     }
-  }
+  },
+  "homepage_url": "https://command-query-feat-320-wor.deno.dev"
 }
