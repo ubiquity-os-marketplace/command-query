@@ -15,7 +15,6 @@ jobs:
       - uses: ubiquity-os/action-deploy-plugin@main
         with:
           action: ${{ github.event_name == 'delete' && 'delete' || 'publish' }}
-          sourceRef: ${{ github.event.ref || github.ref_name }}
           artifactPrefix: dist/
           excludeSupportedEvents: "issue_comment.created"
         env:
