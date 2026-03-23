@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.2](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.4.1...v1.4.2) (2026-03-23)
+
+
+### Bug Fixes
+
+* **ci:** rely on delete-aware action sourceRef defaults ([792aaee](https://github.com/ubiquity-os-marketplace/command-query/commit/792aaee15b445bbd79074ad409e855c7d94bef71))
+* **ci:** resolve sourceRef from delete event payload ([56d4d42](https://github.com/ubiquity-os-marketplace/command-query/commit/56d4d42a96aa7c5ea7a0ad92fd6b6cbba1720ee2))
+* correct deploy plugin entrypoint ([8038fc6](https://github.com/ubiquity-os-marketplace/command-query/commit/8038fc6b053a86cd492f686f9db22f44fd56a684))
+
 ## [1.4.1](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.4.0...v1.4.1) (2026-02-20)
 
 
