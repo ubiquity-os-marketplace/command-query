@@ -34,6 +34,5 @@
         "type": "boolean"
       }
     }
-  },
-  "homepage_url": "https://command-query-demo.deno.dev"
+  }
 }
