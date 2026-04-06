@@ -1,7 +1,7 @@
 import { CommanderError } from "commander";
-import { CommandParser } from "./handlers/command-parser";
-import { Context } from "./types/context";
-import { queryUser } from "./handlers/query-user";
+import { CommandParser } from "./handlers/command-parser.ts";
+import { Context } from "./types/context.ts";
+import { queryUser } from "./handlers/query-user.ts";
 
 export async function run(context: Context) {
   const { logger, eventName, payload, command, commentHandler } = context;
