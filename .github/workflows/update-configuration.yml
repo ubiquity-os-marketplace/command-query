@@ -129,6 +129,7 @@ jobs:
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         with:
           token: ${{ secrets.DENO_2_DEPLOY_TOKEN }}
+          organization: ubiquity-os
           action: ${{ github.event_name == 'delete' && 'delete' || 'provision' }}
           app: ${{ secrets.DENO_PROJECT_NAME }}
           entrypoint: src/index.ts
