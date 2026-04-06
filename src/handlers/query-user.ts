@@ -1,4 +1,4 @@
-import { Context } from "../types/context.ts";
+import { Context } from "../types/context";
 
 async function checkUserAccess(context: Context, username: string) {
   const { octokit, payload } = context;

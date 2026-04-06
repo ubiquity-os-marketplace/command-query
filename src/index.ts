@@ -2,14 +2,14 @@ import { createClient } from "@supabase/supabase-js";
 import { createPlugin } from "@ubiquity-os/plugin-sdk";
 import { Manifest } from "@ubiquity-os/plugin-sdk/manifest";
 import type { ExecutionContext } from "hono";
-import manifest from "../manifest.json" with { type: "json" };
-import { createAdapters } from "./adapters/index.ts";
-import { run } from "./run.ts";
-import { Command } from "./types/command.ts";
-import { SupportedEvents } from "./types/context.ts";
-import { Database } from "./types/database.ts";
-import { Env, envSchema } from "./types/env.ts";
-import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input.ts";
+import manifest from "../manifest.json";
+import { createAdapters } from "./adapters/index";
+import { run } from "./run";
+import { Command } from "./types/command";
+import { SupportedEvents } from "./types/context";
+import { Database } from "./types/database";
+import { Env, envSchema } from "./types/env";
+import { PluginSettings, pluginSettingsSchema } from "./types/plugin-input";
 
 export default {
   async fetch(request: Request, env: Env, executionContext?: ExecutionContext) {

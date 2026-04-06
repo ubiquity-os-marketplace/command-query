@@ -1,7 +1,7 @@
 import { Command, InvalidArgumentError } from "commander";
-import packageJson from "../../package.json" with { type: "json" };
-import { Context } from "../types/context.ts";
-import { queryUser } from "./query-user.ts";
+import packageJson from "../../package.json";
+import { Context } from "../types/context";
+import { queryUser } from "./query-user";
 
 export class CommandParser {
   readonly _program;

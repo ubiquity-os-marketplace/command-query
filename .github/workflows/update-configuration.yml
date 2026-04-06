@@ -113,8 +113,14 @@ jobs:
       EXCLUDE_SUPPORTED_EVENTS: ${{ github.event_name == 'workflow_dispatch' && inputs.exclude_supported_events || vars.EXCLUDE_SUPPORTED_EVENTS || 'issue_comment.created' }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         if: ${{ github.event_name != 'delete' && env.DEPLOY_DENO_ENABLED == 'true' && needs.resolve_source_ref.outputs.is_tag_ref != 'true' && needs.resolve_source_ref.outputs.is_artifact_ref != 'true' }}
+
+      - uses: ubiquity-os/deno-plugin-adapter@main
+        if: ${{ github.event_name != 'delete' && env.DEPLOY_DENO_ENABLED == 'true' && needs.resolve_source_ref.outputs.is_tag_ref != 'true' && needs.resolve_source_ref.outputs.is_artifact_ref != 'true' }}
+        id: adapter
+        with:
+          pluginEntry: "./index"
 
       - uses: ubiquity-os/deno-deploy@issue-17-deno-deploy-app-migration
         if: ${{ env.DEPLOY_DENO_ENABLED == 'true' && needs.resolve_source_ref.outputs.is_tag_ref != 'true' && needs.resolve_source_ref.outputs.is_artifact_ref != 'true' }}
@@ -132,7 +138,7 @@ jobs:
           organization: ubiquity-os
           action: ${{ github.event_name == 'delete' && 'delete' || 'provision' }}
           app: ${{ secrets.DENO_PROJECT_NAME }}
-          entrypoint: src/index.ts
+          entrypoint: ${{ github.event_name == 'delete' && 'src/deno.ts' || steps.adapter.outputs.entrypoint }}
 
   publish-deno-manifest:
     name: "Publish Deno Manifest"
