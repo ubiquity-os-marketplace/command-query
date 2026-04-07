@@ -37,7 +37,6 @@ on:
       - deno_deploy.build.routed
   delete:
 
-
 jobs:
   resolve_source_ref:
     name: "Resolve source ref"
@@ -97,7 +96,6 @@ jobs:
         env:
           APP_ID: ${{ secrets.APP_ID }}
           APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
-
 
   deploy-deno:
     name: "Provision Deno App"
