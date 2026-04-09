@@ -8,8 +8,8 @@ import { Context } from "../src/types/context";
 import { Database } from "../src/types/database";
 import { db } from "./__mocks__/db";
 import { server } from "./__mocks__/node";
-import commentCreatedPayload from "./__mocks__/payloads/comment-created.json";
-import usersGet from "./__mocks__/users-get.json";
+import commentCreatedPayload from "./__mocks__/payloads/comment-created.json" with { type: "json" };
+import usersGet from "./__mocks__/users-get.json" with { type: "json" };
 
 beforeAll(() => server.listen());
 afterEach(() => {

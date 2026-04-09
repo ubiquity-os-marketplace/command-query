@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { createPlugin } from "@ubiquity-os/plugin-sdk";
 import { Manifest } from "@ubiquity-os/plugin-sdk/manifest";
 import type { ExecutionContext } from "hono";
-import manifest from "../manifest.json";
+import manifest from "../manifest.json" with { type: "json" };
 import { createAdapters } from "./adapters/index";
 import { run } from "./run";
 import { Command } from "./types/command";
