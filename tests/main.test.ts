@@ -1,4 +1,4 @@
-import { afterAll, afterEach, beforeAll, beforeEach, describe, it, jest } from "@jest/globals";
+import { afterAll, afterEach, beforeAll, beforeEach, describe, it, jest, expect } from "@jest/globals";
 import { drop } from "@mswjs/data";
 import { Octokit } from "@octokit/rest";
 import { Logs } from "@ubiquity-os/ubiquity-os-logger";
@@ -18,7 +18,7 @@ afterEach(() => {
 });
 afterAll(() => server.close());
 
-jest.unstable_mockModule("@supabase/supabase-js", () => {
+jest.mock("@supabase/supabase-js", () => {
   return {
     createClient: jest.fn(() => {
       return {
