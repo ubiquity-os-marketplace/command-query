@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { createPlugin, Options } from "@ubiquity-os/plugin-sdk";
 import { Manifest, resolveRuntimeManifest } from "@ubiquity-os/plugin-sdk/manifest";
 import type { ExecutionContext } from "hono";
+import { env } from "hono/adapter";
 import manifest from "../manifest.json" with { type: "json" };
 import { createAdapters } from "./adapters/index";
 import { run } from "./run";
@@ -20,12 +21,12 @@ function buildRuntimeManifest(request: Request) {
 }
 
 export default {
-  async fetch(request: Request, env: Env, executionContext?: ExecutionContext) {
+  async fetch(request: Request, serverInfo: Deno.ServeHandlerInfo, executionContext?: ExecutionContext) {
     const runtimeManifest = buildRuntimeManifest(request);
     if (new URL(request.url).pathname === "/manifest.json") {
       return Response.json(runtimeManifest);
     }
-
+    const environment = env<Env>(request as never);
     return createPlugin<PluginSettings, Env, Command, SupportedEvents>(
       (context) => {
         const supabase = createClient<Database>(context.env.SUPABASE_URL, context.env.SUPABASE_KEY);
@@ -33,10 +34,10 @@ export default {
       },
       runtimeManifest,
       {
-        kernelPublicKey: env.KERNEL_PUBLIC_KEY,
+        kernelPublicKey: environment.KERNEL_PUBLIC_KEY,
         settingsSchema: pluginSettingsSchema as unknown as Options["settingsSchema"],
         envSchema: envSchema as unknown as Options["envSchema"],
       }
-    ).fetch(request, env, executionContext);
+    ).fetch(request, serverInfo, executionContext);
   },
 };
