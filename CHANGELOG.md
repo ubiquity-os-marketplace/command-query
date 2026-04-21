@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.4.3](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.4.2...v1.4.3) (2026-04-21)
+
+
+### Bug Fixes
+
+* adapt deno deploy entrypoint ([afa1d30](https://github.com/ubiquity-os-marketplace/command-query/commit/afa1d30d657103e117a8da81e41f539af507f71b))
+* add json import attributes for deno ([fd43a04](https://github.com/ubiquity-os-marketplace/command-query/commit/fd43a04cb61005d88a39d0b5105167c408228c3a))
+* address non-transitive CI failures ([0bb8bdb](https://github.com/ubiquity-os-marketplace/command-query/commit/0bb8bdb9194a8a2760fd86c00abf6c63a26d1c16))
+* align deno worker env handling ([e4874d9](https://github.com/ubiquity-os-marketplace/command-query/commit/e4874d9f8fb13e9466bea345f564bc10003a00b8))
+* bump plugin-sdk for runtime manifest refs ([019b49b](https://github.com/ubiquity-os-marketplace/command-query/commit/019b49bd317d4475f9b871ba2ce66f56e07c17c0))
+* **ci:** treat demo as production secrets environment ([987ff5f](https://github.com/ubiquity-os-marketplace/command-query/commit/987ff5f8ce22cc2cad8fa8da87c476700fd9d3c0))
+* fixed url entry for workers ([8ff9c74](https://github.com/ubiquity-os-marketplace/command-query/commit/8ff9c7457a0766a53a558fa6f37bfcdaff494df1))
+* pass explicit deno org ([8de81a3](https://github.com/ubiquity-os-marketplace/command-query/commit/8de81a3bf11cd67a6b022015792b56959dc7b7bf))
+* upgraded tsconfig to use modern js ([b8b9e77](https://github.com/ubiquity-os-marketplace/command-query/commit/b8b9e77117b7c64ce5c813f682663dc2bed67797))
+* widen runtime env typing ([7fa106f](https://github.com/ubiquity-os-marketplace/command-query/commit/7fa106ffde24acebb1310085db4c2b2eb2ed0ab8))
+
 ## [1.4.2](https://github.com/ubiquity-os-marketplace/command-query/compare/v1.4.1...v1.4.2) (2026-03-23)
 
 
